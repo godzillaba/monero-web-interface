@@ -1,0 +1,112 @@
+div(ng-controller='homeCtrl as vm' ng-cloak)
+  #balance-container(
+    layout='column'
+    layout-gt-sm='row'
+    layout-wrap
+    layout-align='space-between center'
+    layout-padding
+  )
+
+    div(flex-order='1' flex-order-gt-sm='-1')
+      md-button(ng-click='vm.showDialog("#send-dialog");') Send
+      md-button(ng-click='vm.showDialog("#receive-dialog");') Receive
+
+    div(ng-click='vm.fp = !vm.fp' style='cursor: pointer;' flex-order='0')
+      span.md-headline
+        | {{ vm.wallet.getBalance() | atomicToXmrFiat:vm.fp }}
+        |  &asymp; {{ vm.wallet.getBalance() | atomicToXmrFiat:!vm.fp }}
+      span.md-caption(ng-show='vm.wallet.getBalance() != vm.wallet.getUnlockedBalance()')
+        br
+        md-icon(style='font-size: 16px; line-height: 1.4; margin-right: -4px;') lock_open
+        | {{ vm.wallet.getUnlockedBalance() | atomicToXmrFiat:vm.fp }}
+
+  md-list
+    md-list-item.md-3-line.trans-entry(
+      ng-repeat='trans in vm.wallet.getTransfers() | orderBy:"-timestamp"'
+      ng-init='rate = vm.pricesDB.getPrice(trans.timestamp)'
+      ng-class="'trans-'+trans.transfer_type"
+      ng-click='null'
+    )
+
+      .md-list-item-text
+        h4 {{trans.timestamp*1000 | date:'MMM d yyyy @ hh:mm a'}}
+        p(ng-if='trans.payment_id != 0') payment_id: {{ trans.payment_id }}
+        p(hide show-gt-sm) txid: {{ trans.txid }}
+
+      .md-list-item-text(style='text-align: right;')
+        div
+          h3.trans-amt {{ trans.total_amount | atomicToXmrFiat:vm.fp }}
+          //- p(ng-if='trans.fee') fee: {{ trans.fee | atomicToXmrFiat:vm.fp }}
+          p {{ trans.total_amount | atomicToXmrFiat:!vm.fp }}
+
+
+  div(style='visibility: hidden;')
+    #send-dialog.tx-dialog.md-dialog-container
+      md-dialog(layout-padding)
+        md-dialog-content
+
+          h1 Send Monero
+          form(name='vm.sendForm')
+            div(layout='row' layout-wrap layout-align='start')
+
+              md-input-container(flex='100')
+                label Destination Address
+                input(ng-model='vm.sendTX.address' type='text' required)
+
+
+              md-input-container(flex='75')
+                label Payment ID
+                input(
+                  ng-model='vm.sendTX.payment_id'
+                  ng-disabled='vm.sendTX.address.length > 95'
+                  type='text'
+                )
+
+              md-input-container(flex='25')
+                label Mixin
+                input(ng-model='vm.sendTX.mixin' type='text' required)
+
+              md-input-container(flex='50')
+                label XMR
+                input(
+                  ng-model='vm.sendTX.amount'
+                  ng-change='vm.syncSendAmounts(true);'
+                  type='text'
+                  required
+                )
+
+              //- TODO: usd/other fiat conversion
+              md-input-container(flex='50')
+                label USD
+                input(
+                  ng-model='vm.sendTX.amountFiat'
+                  ng-change='vm.syncSendAmounts(false);'
+                  type='text'
+                  required
+                )
+
+        md-dialog-actions
+          md-button.md-primary(ng-click='vm.hideDialog();') Close
+          md-button.md-primary(
+            ng-disabled='!vm.sendForm.$valid'
+            ng-click='vm.confirmSend();'
+          ) Send
+
+  div(style='visibility: hidden;')
+    #confirm-send-dialog.md-dialog-container
+      md-dialog(layout-padding)
+        md-dialog-content
+          h2 Confirm Transaction
+        md-dialog-actions
+          md-button.md-primary(ng-click='vm.hideDialog();') FUk dat
+          md-button.md-primary(ng-click='vm.sendFunds();') Confirm
+
+
+  div(style='visibility: hidden;')
+    #receive-dialog.tx-dialog.md-dialog-container
+      md-dialog(layout-padding)
+        md-dialog-content
+          h1 Receive Monero
+          p hi
+        md-dialog-actions
+          md-button.md-primary(ng-click='vm.hideDialog();') Close

@@ -1,0 +1,21 @@
+{
+  "name": "monero-mobile-wallet",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Henry Arneson",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "config": "^1.24.0",
+    "deasync": "^0.1.9",
+    "express": "^4.14.0",
+    "pem": "^1.9.4",
+    "pug": "^2.0.0-beta6",
+    "request": "^2.79.0",
+    "tcp-port-used": "^0.1.2"
+  }
+}

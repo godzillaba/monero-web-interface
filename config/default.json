@@ -1,0 +1,23 @@
+{
+  "wallet": {
+    "file": "./wallets/testWallet",
+    "password": "testpass"
+  },
+  "moneroTools": {
+    "daemonPort": 18081,
+    "walletPort": 18082,
+    "startTimeout": 60000
+  },
+  "webServer": {
+    "host": "0.0.0.0",
+    "port": 3000
+  },
+  "sslKeys": {
+    "rootCA": {
+      "commonName": "_Monero Wallet CA"
+    },
+    "server": {
+      "commonName": "archie"
+    }
+  }
+}

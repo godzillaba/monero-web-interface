@@ -1,0 +1,368 @@
+2017-Jan-25 14:57:32.012238 Monero 'Wolfram Warptangent' (v0.10.1.0-release)
+2017-Jan-25 14:57:32.012265 Setting log level = 0
+2017-Jan-25 14:57:32.012270 default_log: monero-wallet-cli.log
+2017-Jan-25 14:57:32.012280 Logging at log level 0 to /home/henry/GitHub/monero-mobile-wallet2/./log/monero-wallet-cli.log
+2017-Jan-25 14:57:32.012289 Loading wallet...
+2017-Jan-25 14:57:32.041949 Loaded wallet keys file, with public address: 48m9rmiEqmYBDjKesakDwMFDNpJ6gHxrDB5LBKn4R26V7FH8sZh1xEuLhdmqteKX1WbVLw1DfeKTQK6tuzZvwFrxSbzr52n
+2017-Jan-25 14:57:32.228950 ERROR /DISTRIBUTION-BUILD/contrib/epee/include/net/http_client.h:899 failed to connect localhost:18081
+2017-Jan-25 14:57:32.228975 ERROR /DISTRIBUTION-BUILD/src/wallet/wallet2.cpp:1152 !r. THROW EXCEPTION: error::no_connection_to_daemon
+2017-Jan-25 14:57:32.228986 /DISTRIBUTION-BUILD/src/wallet/wallet2.cpp:1152:N5tools5error23no_connection_to_daemonE: no connection to daemon, request = getblocks.bin
+2017-Jan-25 14:57:32.229029 ERROR /DISTRIBUTION-BUILD/src/wallet/wallet_rpc_server.cpp:1205 Wallet initialization failed: no connection to daemon
+2017-Jan-25 14:58:45.873266 Monero 'Wolfram Warptangent' (v0.10.1.0-release)
+2017-Jan-25 14:58:45.873310 Setting log level = 0
+2017-Jan-25 14:58:45.873318 default_log: monero-wallet-cli.log
+2017-Jan-25 14:58:45.873332 Logging at log level 0 to /home/henry/GitHub/monero-mobile-wallet2/./log/monero-wallet-cli.log
+2017-Jan-25 14:58:45.873348 Loading wallet...
+2017-Jan-25 14:58:45.897617 Loaded wallet keys file, with public address: 48m9rmiEqmYBDjKesakDwMFDNpJ6gHxrDB5LBKn4R26V7FH8sZh1xEuLhdmqteKX1WbVLw1DfeKTQK6tuzZvwFrxSbzr52n
+2017-Jan-25 14:58:49.646458 Loaded ok
+2017-Jan-25 14:58:49.646732 Binding on 127.0.0.1:18082
+2017-Jan-25 14:58:49.646874 Starting wallet rpc server
+2017-Jan-25 14:58:49.646921 Run net_service loop( 1 threads)...
+2017-Jan-25 16:55:25.185460 [RPC0]ERROR /DISTRIBUTION-BUILD/src/wallet/wallet2.cpp:3986 0 == dt.amount. THROW EXCEPTION: error::zero_destination
+2017-Jan-25 16:55:25.185625 [RPC0]/DISTRIBUTION-BUILD/src/wallet/wallet2.cpp:3986:N5tools5error16zero_destinationE: destination amount is zero
+2017-Jan-25 16:56:23.757207 [RPC0]ERROR /DISTRIBUTION-BUILD/contrib/epee/include/storages/portable_storage_val_converters.h:130 WRONG DATA CONVERSION: from type=NSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE to type m
+2017-Jan-25 16:56:23.757486 [RPC0]ERROR /DISTRIBUTION-BUILD/contrib/epee/include/net/jsonrpc_structs.h:21 Exception on unserializing: WRONG DATA CONVERSION: from type=NSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE to type m
+2017-Jan-25 16:56:50.964842 [RPC0]ERROR /DISTRIBUTION-BUILD/contrib/epee/include/storages/portable_storage_val_converters.h:130 WRONG DATA CONVERSION: from type=NSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE to type m
+2017-Jan-25 16:56:50.964905 [RPC0]ERROR /DISTRIBUTION-BUILD/contrib/epee/include/net/jsonrpc_structs.h:21 Exception on unserializing: WRONG DATA CONVERSION: from type=NSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE to type m
+2017-Jan-25 16:57:31.413737 [RPC0]ERROR /DISTRIBUTION-BUILD/contrib/epee/include/storages/portable_storage_val_converters.h:130 WRONG DATA CONVERSION: from type=NSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE to type m
+2017-Jan-25 16:57:31.413802 [RPC0]ERROR /DISTRIBUTION-BUILD/contrib/epee/include/net/jsonrpc_structs.h:21 Exception on unserializing: WRONG DATA CONVERSION: from type=NSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE to type m
+2017-Jan-25 16:57:50.671784 [RPC0]ERROR /DISTRIBUTION-BUILD/contrib/epee/include/storages/portable_storage_val_converters.h:130 WRONG DATA CONVERSION: from type=NSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE to type m
+2017-Jan-25 16:57:50.671865 [RPC0]ERROR /DISTRIBUTION-BUILD/contrib/epee/include/net/jsonrpc_structs.h:21 Exception on unserializing: WRONG DATA CONVERSION: from type=NSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE to type m
+2017-Jan-25 16:58:45.871503 [RPC0]ERROR /DISTRIBUTION-BUILD/contrib/epee/include/storages/portable_storage_val_converters.h:130 WRONG DATA CONVERSION: from type=NSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE to type m
+2017-Jan-25 16:58:45.871758 [RPC0]ERROR /DISTRIBUTION-BUILD/contrib/epee/include/net/jsonrpc_structs.h:21 Exception on unserializing: WRONG DATA CONVERSION: from type=NSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE to type m
+2017-Jan-25 17:00:23.684852 [RPC0]ERROR /DISTRIBUTION-BUILD/contrib/epee/include/storages/portable_storage_val_converters.h:130 WRONG DATA CONVERSION: from type=NSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE to type m
+2017-Jan-25 17:00:23.684966 [RPC0]ERROR /DISTRIBUTION-BUILD/contrib/epee/include/net/jsonrpc_structs.h:21 Exception on unserializing: WRONG DATA CONVERSION: from type=NSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE to type m
+2017-Jan-25 17:00:40.840298 [RPC0]ERROR /DISTRIBUTION-BUILD/contrib/epee/include/storages/portable_storage_val_converters.h:130 WRONG DATA CONVERSION: from type=NSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE to type m
+2017-Jan-25 17:00:40.840372 [RPC0]ERROR /DISTRIBUTION-BUILD/contrib/epee/include/net/jsonrpc_structs.h:21 Exception on unserializing: WRONG DATA CONVERSION: from type=NSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE to type m
+2017-Jan-25 17:01:39.677850 [RPC0]ERROR /DISTRIBUTION-BUILD/contrib/epee/include/storages/portable_storage_val_converters.h:130 WRONG DATA CONVERSION: from type=NSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE to type m
+2017-Jan-25 17:01:39.677955 [RPC0]ERROR /DISTRIBUTION-BUILD/contrib/epee/include/net/jsonrpc_structs.h:21 Exception on unserializing: WRONG DATA CONVERSION: from type=NSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE to type m
+2017-Jan-25 17:02:27.972151 [RPC0]selected transfers: 
+2017-Jan-25 17:02:28.184397 [RPC0]amount=0.477014284669, real_output=1, real_output_in_tx_index=1, indexes: 60138 66314 66349 
+2017-Jan-25 17:02:28.381974 [RPC0]selected transfers: 
+2017-Jan-25 17:02:28.591057 [RPC0]amount=0.477014284669, real_output=2, real_output_in_tx_index=1, indexes: 46283 49801 66314 
+2017-Jan-25 17:02:28.739796 [RPC0]Transaction successfully sent. <<fd72e5de8f32a6c2864b73da2e340c04d99e4949fff04c650ffcd589596a6f53>>
+Commission: 0.021261899711 (dust sent to dust addr: 0.000000000000)
+Balance: 0.455852384957
+Unlocked: 0.000100000000
+Please, wait for confirmation for your balance to be unlocked.
+2017-Jan-25 17:07:31.652057 [RPC0]selected transfers: 
+2017-Jan-25 17:07:31.834596 [RPC0]amount=0.000100000000, real_output=2, real_output_in_tx_index=0, indexes: 44561 58351 61496 69267 
+2017-Jan-25 17:07:31.910696 [RPC0]ERROR /DISTRIBUTION-BUILD/src/wallet/wallet2.cpp:4055 1. THROW EXCEPTION: error::tx_not_possible
+2017-Jan-25 17:07:31.910729 [RPC0]/DISTRIBUTION-BUILD/src/wallet/wallet2.cpp:4055:N5tools5error15tx_not_possibleE: tx not possible, available = 0.000100000000, tx_amount = 0.000000010000, fee = 0.021261859151
+2017-Jan-25 17:08:25.495396 [RPC0]ERROR /DISTRIBUTION-BUILD/src/wallet/wallet2.cpp:3986 0 == dt.amount. THROW EXCEPTION: error::zero_destination
+2017-Jan-25 17:08:25.495500 [RPC0]/DISTRIBUTION-BUILD/src/wallet/wallet2.cpp:3986:N5tools5error16zero_destinationE: destination amount is zero
+2017-Jan-25 17:09:48.935263 [RPC0]Received money: 0.455752384957, with tx: <fd72e5de8f32a6c2864b73da2e340c04d99e4949fff04c650ffcd589596a6f53>
+2017-Jan-25 17:09:48.935391 [RPC0]Spent money: 0.477014284669, with tx: <fd72e5de8f32a6c2864b73da2e340c04d99e4949fff04c650ffcd589596a6f53>
+2017-Jan-25 17:13:30.675311 [RPC0]selected transfers: 
+2017-Jan-25 17:13:30.942066 [RPC0]amount=0.000100000000, real_output=0, real_output_in_tx_index=0, indexes: 61496 64578 65665 
+2017-Jan-25 17:13:31.034441 [RPC0]ERROR /DISTRIBUTION-BUILD/src/wallet/wallet2.cpp:4055 1. THROW EXCEPTION: error::tx_not_possible
+2017-Jan-25 17:13:31.034482 [RPC0]/DISTRIBUTION-BUILD/src/wallet/wallet2.cpp:4055:N5tools5error15tx_not_possibleE: tx not possible, available = 0.000100000000, tx_amount = 0.000001000000, fee = 0.021256195142
+2017-Jan-25 17:17:29.028722 [RPC0]selected transfers: 
+2017-Jan-25 17:17:29.347120 [RPC0]amount=0.000100000000, real_output=1, real_output_in_tx_index=0, indexes: 57324 61496 68509 69276 
+2017-Jan-25 17:17:29.441445 [RPC0]ERROR /DISTRIBUTION-BUILD/src/wallet/wallet2.cpp:4055 1. THROW EXCEPTION: error::tx_not_possible
+2017-Jan-25 17:17:29.441486 [RPC0]/DISTRIBUTION-BUILD/src/wallet/wallet2.cpp:4055:N5tools5error15tx_not_possibleE: tx not possible, available = 0.000100000000, tx_amount = 0.000000100000, fee = 0.021256155479
+2017-Jan-25 17:17:47.248662 [RPC0]selected transfers: 
+2017-Jan-25 17:17:47.451210 [RPC0]amount=0.000100000000, real_output=3, real_output_in_tx_index=0, indexes: 22032 23188 31901 61496 
+2017-Jan-25 17:17:47.523242 [RPC0]ERROR /DISTRIBUTION-BUILD/src/wallet/wallet2.cpp:4055 1. THROW EXCEPTION: error::tx_not_possible
+2017-Jan-25 17:17:47.523278 [RPC0]/DISTRIBUTION-BUILD/src/wallet/wallet2.cpp:4055:N5tools5error15tx_not_possibleE: tx not possible, available = 0.000100000000, tx_amount = 0.000000001000, fee = 0.021256116414
+2017-Jan-25 17:18:29.252053 [RPC0]selected transfers: 
+2017-Jan-25 17:18:29.452375 [RPC0]amount=0.000100000000, real_output=3, real_output_in_tx_index=0, indexes: 14494 45363 52990 61496 
+2017-Jan-25 17:18:29.491334 [RPC0]ERROR /DISTRIBUTION-BUILD/src/wallet/wallet2.cpp:4055 1. THROW EXCEPTION: error::tx_not_possible
+2017-Jan-25 17:18:29.491383 [RPC0]/DISTRIBUTION-BUILD/src/wallet/wallet2.cpp:4055:N5tools5error15tx_not_possibleE: tx not possible, available = 0.000100000000, tx_amount = 0.000000001000, fee = 0.021256116414
+2017-Jan-25 17:20:05.258635 [RPC0]selected transfers: 
+2017-Jan-25 17:20:05.488415 [RPC0]amount=0.000100000000, real_output=2, real_output_in_tx_index=0, indexes: 19465 58431 61496 69672 
+2017-Jan-25 17:20:05.597242 [RPC0]ERROR /DISTRIBUTION-BUILD/src/wallet/wallet2.cpp:4055 1. THROW EXCEPTION: error::tx_not_possible
+2017-Jan-25 17:20:05.597288 [RPC0]/DISTRIBUTION-BUILD/src/wallet/wallet2.cpp:4055:N5tools5error15tx_not_possibleE: tx not possible, available = 0.000100000000, tx_amount = 0.000000000001, fee = 0.021261619691
+2017-Jan-25 17:22:04.983388 [RPC0]ERROR /DISTRIBUTION-BUILD/contrib/epee/include/net/http_client.h:351 HTTP_CLIENT: Failed to SEND
+2017-Jan-25 17:22:04.983477 [RPC0]Error calling gettransactions daemon RPC: r 0, status 
+2017-Jan-25 17:22:04.983879 [RPC0]ERROR /DISTRIBUTION-BUILD/contrib/epee/include/net/http_client.h:899 failed to connect localhost:18081
+2017-Jan-25 17:22:04.983936 [RPC0]Error calling gettransactions daemon RPC: r 0, status 
+2017-Jan-25 17:22:04.984285 [RPC0]ERROR /DISTRIBUTION-BUILD/contrib/epee/include/net/http_client.h:899 failed to connect localhost:18081
+2017-Jan-25 17:22:04.984341 [RPC0]Error calling gettransactions daemon RPC: r 0, status 
+2017-Jan-25 17:22:04.984679 [RPC0]ERROR /DISTRIBUTION-BUILD/contrib/epee/include/net/http_client.h:899 failed to connect localhost:18081
+2017-Jan-25 17:22:04.984734 [RPC0]Error calling gettransactions daemon RPC: r 0, status 
+2017-Jan-25 17:22:04.985068 [RPC0]ERROR /DISTRIBUTION-BUILD/contrib/epee/include/net/http_client.h:899 failed to connect localhost:18081
+2017-Jan-25 17:22:04.985179 [RPC0]Error calling gettransactions daemon RPC: r 0, status 
+2017-Jan-25 17:22:04.985508 [RPC0]ERROR /DISTRIBUTION-BUILD/contrib/epee/include/net/http_client.h:899 failed to connect localhost:18081
+2017-Jan-25 17:22:04.985562 [RPC0]Error calling gettransactions daemon RPC: r 0, status 
+2017-Jan-25 17:22:04.985880 [RPC0]ERROR /DISTRIBUTION-BUILD/contrib/epee/include/net/http_client.h:899 failed to connect localhost:18081
+2017-Jan-25 17:22:04.985932 [RPC0]Error calling gettransactions daemon RPC: r 0, status 
+2017-Jan-25 17:22:04.986985 [RPC0]ERROR /DISTRIBUTION-BUILD/contrib/epee/include/net/http_client.h:899 failed to connect localhost:18081
+2017-Jan-25 17:22:04.987039 [RPC0]Error calling gettransactions daemon RPC: r 0, status 
+2017-Jan-25 17:22:04.987288 [RPC0]ERROR /DISTRIBUTION-BUILD/contrib/epee/include/net/http_client.h:899 failed to connect localhost:18081
+2017-Jan-25 17:22:04.987325 [RPC0]Error calling gettransactions daemon RPC: r 0, status 
+2017-Jan-25 17:22:04.987548 [RPC0]ERROR /DISTRIBUTION-BUILD/contrib/epee/include/net/http_client.h:899 failed to connect localhost:18081
+2017-Jan-25 17:22:04.987605 [RPC0]Error calling gettransactions daemon RPC: r 0, status 
+2017-Jan-25 17:22:04.987821 [RPC0]ERROR /DISTRIBUTION-BUILD/contrib/epee/include/net/http_client.h:899 failed to connect localhost:18081
+2017-Jan-25 17:22:04.987856 [RPC0]Error calling gettransactions daemon RPC: r 0, status 
+2017-Jan-25 17:22:04.988088 [RPC0]ERROR /DISTRIBUTION-BUILD/contrib/epee/include/net/http_client.h:899 failed to connect localhost:18081
+2017-Jan-25 17:22:04.988133 [RPC0]Error calling gettransactions daemon RPC: r 0, status 
+2017-Jan-25 17:22:04.988356 [RPC0]ERROR /DISTRIBUTION-BUILD/contrib/epee/include/net/http_client.h:899 failed to connect localhost:18081
+2017-Jan-25 17:22:04.988389 [RPC0]Error calling gettransactions daemon RPC: r 0, status 
+2017-Jan-25 17:22:04.988657 [RPC0]ERROR /DISTRIBUTION-BUILD/contrib/epee/include/net/http_client.h:899 failed to connect localhost:18081
+2017-Jan-25 17:22:04.988694 [RPC0]Error calling gettransactions daemon RPC: r 0, status 
+2017-Jan-25 17:22:04.988900 [RPC0]ERROR /DISTRIBUTION-BUILD/contrib/epee/include/net/http_client.h:899 failed to connect localhost:18081
+2017-Jan-25 17:22:04.988934 [RPC0]Error calling gettransactions daemon RPC: r 0, status 
+2017-Jan-25 17:22:04.989141 [RPC0]ERROR /DISTRIBUTION-BUILD/contrib/epee/include/net/http_client.h:899 failed to connect localhost:18081
+2017-Jan-25 17:22:04.989174 [RPC0]Error calling gettransactions daemon RPC: r 0, status 
+2017-Jan-25 17:22:04.989382 [RPC0]ERROR /DISTRIBUTION-BUILD/contrib/epee/include/net/http_client.h:899 failed to connect localhost:18081
+2017-Jan-25 17:22:04.989415 [RPC0]Error calling gettransactions daemon RPC: r 0, status 
+2017-Jan-25 17:22:04.989637 [RPC0]ERROR /DISTRIBUTION-BUILD/contrib/epee/include/net/http_client.h:899 failed to connect localhost:18081
+2017-Jan-25 17:22:04.989670 [RPC0]Error calling gettransactions daemon RPC: r 0, status 
+2017-Jan-25 17:22:04.989934 [RPC0]ERROR /DISTRIBUTION-BUILD/contrib/epee/include/net/http_client.h:899 failed to connect localhost:18081
+2017-Jan-25 17:22:04.989972 [RPC0]Error calling gettransactions daemon RPC: r 0, status 
+2017-Jan-25 17:22:04.990198 [RPC0]ERROR /DISTRIBUTION-BUILD/contrib/epee/include/net/http_client.h:899 failed to connect localhost:18081
+2017-Jan-25 17:22:04.990231 [RPC0]Error calling gettransactions daemon RPC: r 0, status 
+2017-Jan-25 17:22:04.990455 [RPC0]ERROR /DISTRIBUTION-BUILD/contrib/epee/include/net/http_client.h:899 failed to connect localhost:18081
+2017-Jan-25 17:22:04.990489 [RPC0]Error calling gettransactions daemon RPC: r 0, status 
+2017-Jan-25 17:22:04.990708 [RPC0]ERROR /DISTRIBUTION-BUILD/contrib/epee/include/net/http_client.h:899 failed to connect localhost:18081
+2017-Jan-25 17:22:04.990773 [RPC0]Error calling gettransactions daemon RPC: r 0, status 
+2017-Jan-25 17:22:04.991446 [SRV_MAIN]net_service loop stopped.
+2017-Jan-25 17:22:04.991545 [SRV_MAIN]Stopped wallet rpc server
+2017-Jan-25 17:22:04.991587 [SRV_MAIN]Storing wallet...
+2017-Jan-25 17:22:05.179435 [SRV_MAIN]Stored ok
+2017-Jan-25 17:22:33.700377 Monero 'Wolfram Warptangent' (v0.10.1.0-release)
+2017-Jan-25 17:22:33.700465 Setting log level = 0
+2017-Jan-25 17:22:33.700495 default_log: monero-wallet-cli.log
+2017-Jan-25 17:22:33.700538 Logging at log level 0 to /home/henry/GitHub/monero-mobile-wallet2/./log/monero-wallet-cli.log
+2017-Jan-25 17:22:33.700645 Loading wallet...
+2017-Jan-25 17:22:33.737277 Loaded wallet keys file, with public address: 48m9rmiEqmYBDjKesakDwMFDNpJ6gHxrDB5LBKn4R26V7FH8sZh1xEuLhdmqteKX1WbVLw1DfeKTQK6tuzZvwFrxSbzr52n
+2017-Jan-25 17:22:42.119396 Loaded ok
+2017-Jan-25 17:22:42.119794 Binding on 127.0.0.1:18082
+2017-Jan-25 17:22:42.120016 Starting wallet rpc server
+2017-Jan-25 17:22:42.120084 Run net_service loop( 1 threads)...
+2017-Jan-25 17:22:53.758651 [RPC0]selected transfers: 
+2017-Jan-25 17:22:54.047360 [RPC0]amount=0.000100000000, real_output=3, real_output_in_tx_index=0, indexes: 11513 51062 61035 61496 
+2017-Jan-25 17:22:54.197622 [RPC0]ERROR /DISTRIBUTION-BUILD/src/wallet/wallet2.cpp:4055 1. THROW EXCEPTION: error::tx_not_possible
+2017-Jan-25 17:22:54.197858 [RPC0]/DISTRIBUTION-BUILD/src/wallet/wallet2.cpp:4055:N5tools5error15tx_not_possibleE: tx not possible, available = 0.000100000000, tx_amount = 0.000000000001, fee = 0.021274069128
+2017-Jan-25 17:23:35.825392 [RPC0]ERROR /DISTRIBUTION-BUILD/src/wallet/wallet2.cpp:4013 needed_money > unlocked_balance(). THROW EXCEPTION: error::not_enough_money
+2017-Jan-25 17:23:35.825522 [RPC0]/DISTRIBUTION-BUILD/src/wallet/wallet2.cpp:4013:N5tools5error16not_enough_moneyE: not enough money, available = 0.000100000000, tx_amount = 0.000500000000
+2017-Jan-25 17:31:38.671974 [RPC0]Received money: 1.000000000000, with tx: <6ef90b1216975826691c7bc7e0e10b0ed4e09c40e64a9ccd1b5bef9e92a0ccc1>
+2017-Jan-25 17:37:05.135172 [RPC0]selected transfers: 
+2017-Jan-25 17:37:05.315656 [RPC0]amount=0.455752384957, real_output=3, real_output_in_tx_index=1, indexes: 12965 63823 63936 69900 
+2017-Jan-25 17:37:05.491731 [RPC0]selected transfers: 
+2017-Jan-25 17:37:05.701085 [RPC0]amount=0.455752384957, real_output=3, real_output_in_tx_index=1, indexes: 58359 67351 67887 69900 
+2017-Jan-25 17:37:05.947799 [RPC0]Transaction successfully sent. <<2389671d10d499a4314d6a6da9bb40ccb716ada97f4cca6871874a0aa75ddb44>>
+Commission: 0.021261338189 (dust sent to dust addr: 0.000000000000)
+Balance: 1.434591036768
+Unlocked: 0.000100000000
+Please, wait for confirmation for your balance to be unlocked.
+2017-Jan-25 17:37:31.571943 [RPC0]selected transfers: 
+2017-Jan-25 17:37:31.787263 [RPC0]amount=0.000100000000, real_output=2, real_output_in_tx_index=0, indexes: 18108 60552 61496 65691 
+2017-Jan-25 17:37:31.853743 [RPC0]ERROR /DISTRIBUTION-BUILD/src/wallet/wallet2.cpp:4055 1. THROW EXCEPTION: error::tx_not_possible
+2017-Jan-25 17:37:31.853815 [RPC0]/DISTRIBUTION-BUILD/src/wallet/wallet2.cpp:4055:N5tools5error15tx_not_possibleE: tx not possible, available = 0.000100000000, tx_amount = 0.000000001000, fee = 0.021261338189
+2017-Jan-25 17:38:24.388543 [RPC0]selected transfers: 
+2017-Jan-25 17:38:24.574405 [RPC0]amount=0.000100000000, real_output=2, real_output_in_tx_index=0, indexes: 24992 47968 61496 64985 
+2017-Jan-25 17:38:24.658014 [RPC0]ERROR /DISTRIBUTION-BUILD/src/wallet/wallet2.cpp:4055 1. THROW EXCEPTION: error::tx_not_possible
+2017-Jan-25 17:38:24.658060 [RPC0]/DISTRIBUTION-BUILD/src/wallet/wallet2.cpp:4055:N5tools5error15tx_not_possibleE: tx not possible, available = 0.000100000000, tx_amount = 0.000000001000, fee = 0.021261338189
+2017-Jan-25 17:42:51.888666 [RPC0]Received money: 0.434491036768, with tx: <2389671d10d499a4314d6a6da9bb40ccb716ada97f4cca6871874a0aa75ddb44>
+2017-Jan-25 17:42:51.888778 [RPC0]Spent money: 0.455752384957, with tx: <2389671d10d499a4314d6a6da9bb40ccb716ada97f4cca6871874a0aa75ddb44>
+2017-Jan-25 17:47:41.765067 [RPC0]selected transfers: 
+2017-Jan-25 17:47:41.975606 [RPC0]amount=0.000100000000, real_output=2, real_output_in_tx_index=0, indexes: 10760 27594 61496 66786 
+2017-Jan-25 17:47:42.018953 [RPC0]ERROR /DISTRIBUTION-BUILD/src/wallet/wallet2.cpp:4055 1. THROW EXCEPTION: error::tx_not_possible
+2017-Jan-25 17:47:42.018990 [RPC0]/DISTRIBUTION-BUILD/src/wallet/wallet2.cpp:4055:N5tools5error15tx_not_possibleE: tx not possible, available = 0.000100000000, tx_amount = 0.000000001000, fee = 0.021273667922
+2017-Jan-25 17:49:05.371784 [RPC0]selected transfers: 
+2017-Jan-25 17:49:05.624326 [RPC0]amount=0.000100000000, real_output=1, real_output_in_tx_index=0, indexes: 59523 61496 69075 69162 
+2017-Jan-25 17:49:05.713720 [RPC0]ERROR /DISTRIBUTION-BUILD/src/wallet/wallet2.cpp:4055 1. THROW EXCEPTION: error::tx_not_possible
+2017-Jan-25 17:49:05.713756 [RPC0]/DISTRIBUTION-BUILD/src/wallet/wallet2.cpp:4055:N5tools5error15tx_not_possibleE: tx not possible, available = 0.000100000000, tx_amount = 0.000000001000, fee = 0.021273667922
+2017-Jan-25 17:49:22.452960 [SRV_MAIN]net_service loop stopped.
+2017-Jan-25 17:49:22.453047 [SRV_MAIN]Stopped wallet rpc server
+2017-Jan-25 17:49:22.453090 [SRV_MAIN]Storing wallet...
+2017-Jan-25 17:49:22.646773 [SRV_MAIN]Stored ok
+2017-Jan-25 17:49:40.744420 Monero 'Wolfram Warptangent' (v0.10.1.0-release)
+2017-Jan-25 17:49:40.744541 Setting log level = 0
+2017-Jan-25 17:49:40.744568 default_log: monero-wallet-cli.log
+2017-Jan-25 17:49:40.744606 Logging at log level 0 to /home/henry/GitHub/monero-mobile-wallet2/./log/monero-wallet-cli.log
+2017-Jan-25 17:49:40.744646 Loading wallet...
+2017-Jan-25 17:49:40.791988 Loaded wallet keys file, with public address: 48m9rmiEqmYBDjKesakDwMFDNpJ6gHxrDB5LBKn4R26V7FH8sZh1xEuLhdmqteKX1WbVLw1DfeKTQK6tuzZvwFrxSbzr52n
+2017-Jan-25 17:49:46.757284 Loaded ok
+2017-Jan-25 17:49:46.757444 Binding on 127.0.0.1:18082
+2017-Jan-25 17:49:46.757542 Starting wallet rpc server
+2017-Jan-25 17:49:46.757567 Run net_service loop( 1 threads)...
+2017-Jan-25 17:50:03.135200 [RPC0]selected transfers: 
+2017-Jan-25 17:50:03.402408 [RPC0]amount=0.000100000000, real_output=3, real_output_in_tx_index=0, indexes: 33164 46299 59120 61496 
+2017-Jan-25 17:50:03.468581 [RPC0]ERROR /DISTRIBUTION-BUILD/src/wallet/wallet2.cpp:4055 1. THROW EXCEPTION: error::tx_not_possible
+2017-Jan-25 17:50:03.468644 [RPC0]/DISTRIBUTION-BUILD/src/wallet/wallet2.cpp:4055:N5tools5error15tx_not_possibleE: tx not possible, available = 0.000100000000, tx_amount = 0.000000001000, fee = 0.021341882874
+2017-Jan-25 17:55:45.151633 [RPC0]selected transfers: 
+2017-Jan-25 17:55:45.362208 [RPC0]amount=1.000000000000, real_output=3, real_output_in_tx_index=0, indexes: 25389 29833 47981 69977 
+2017-Jan-25 17:55:45.531734 [RPC0]selected transfers: 
+2017-Jan-25 17:55:45.781251 [RPC0]amount=1.000000000000, real_output=3, real_output_in_tx_index=0, indexes: 50592 62436 69589 69977 
+2017-Jan-25 17:55:46.011622 [RPC0]Transaction successfully sent. <<486ab9af1c5d77813b1a34d70eea1ca04f3967f1fd03f4b6891c3f84567c0b50>>
+Commission: 0.021341804133 (dust sent to dust addr: 0.000000000000)
+Balance: 1.413249232535
+Unlocked: 0.000100000000
+Please, wait for confirmation for your balance to be unlocked.
+2017-Jan-25 17:57:52.497349 [RPC0]Received money: 0.978658195767, with tx: <486ab9af1c5d77813b1a34d70eea1ca04f3967f1fd03f4b6891c3f84567c0b50>
+2017-Jan-25 17:57:52.497469 [RPC0]Spent money: 1.000000000000, with tx: <486ab9af1c5d77813b1a34d70eea1ca04f3967f1fd03f4b6891c3f84567c0b50>
+2017-Jan-25 17:58:25.825056 [RPC0]selected transfers: 
+2017-Jan-25 17:58:26.024306 [RPC0]amount=0.000100000000, real_output=1, real_output_in_tx_index=0, indexes: 19458 61496 63020 
+2017-Jan-25 17:58:26.094068 [RPC0]ERROR /DISTRIBUTION-BUILD/src/wallet/wallet2.cpp:4055 1. THROW EXCEPTION: error::tx_not_possible
+2017-Jan-25 17:58:26.094100 [RPC0]/DISTRIBUTION-BUILD/src/wallet/wallet2.cpp:4055:N5tools5error15tx_not_possibleE: tx not possible, available = 0.000100000000, tx_amount = 0.000000000200, fee = 0.021260899075
+2017-Jan-25 17:59:08.538483 [RPC0]selected transfers: 
+2017-Jan-25 17:59:08.742029 [RPC0]amount=0.434491036768, real_output=2, real_output_in_tx_index=1, indexes: 18481 63672 70015 
+2017-Jan-25 17:59:08.948453 [RPC0]selected transfers: 
+2017-Jan-25 17:59:09.140826 [RPC0]amount=0.434491036768, real_output=2, real_output_in_tx_index=1, indexes: 25752 58583 70015 
+2017-Jan-25 17:59:09.285678 [RPC0]Transaction successfully sent. <<60a87f1f849ff08eef3daedf8bde15981547b378698a84acf17498139f18205c>>
+Commission: 0.021260899075 (dust sent to dust addr: 0.000000000000)
+Balance: 1.391988333360
+Unlocked: 0.000100000000
+Please, wait for confirmation for your balance to be unlocked.
+2017-Jan-25 18:08:14.053699 [RPC0]Received money: 0.413230137593, with tx: <60a87f1f849ff08eef3daedf8bde15981547b378698a84acf17498139f18205c>
+2017-Jan-25 18:08:14.053796 [RPC0]Spent money: 0.434491036768, with tx: <60a87f1f849ff08eef3daedf8bde15981547b378698a84acf17498139f18205c>
+2017-Jan-25 18:24:12.284919 [RPC0]ERROR /DISTRIBUTION-BUILD/src/wallet/wallet2.cpp:3986 0 == dt.amount. THROW EXCEPTION: error::zero_destination
+2017-Jan-25 18:24:12.285040 [RPC0]/DISTRIBUTION-BUILD/src/wallet/wallet2.cpp:3986:N5tools5error16zero_destinationE: destination amount is zero
+2017-Jan-25 18:25:39.078201 [RPC0]selected transfers: 
+2017-Jan-25 18:25:39.280683 [RPC0]amount=0.978658195767, real_output=3, real_output_in_tx_index=1, indexes: 55510 55619 63492 70091 
+2017-Jan-25 18:25:39.475007 [RPC0]selected transfers: 
+2017-Jan-25 18:25:39.680307 [RPC0]amount=0.978658195767, real_output=3, real_output_in_tx_index=1, indexes: 15432 65236 69607 70091 
+2017-Jan-25 18:25:39.829258 [RPC0]Transaction successfully sent. <<33a2b886f182cc1a17458c711b66f7543fe733adf028331773e5b1afee77808a>>
+Commission: 0.021248639243 (dust sent to dust addr: 0.000000000000)
+Balance: 1.370738694117
+Unlocked: 0.000100000000
+Please, wait for confirmation for your balance to be unlocked.
+2017-Jan-25 18:28:22.744889 [RPC0]selected transfers: 
+2017-Jan-25 18:28:22.943672 [RPC0]amount=0.000100000000, real_output=2, real_output_in_tx_index=0, indexes: 46570 55164 61496 63636 
+2017-Jan-25 18:28:23.013563 [RPC0]ERROR /DISTRIBUTION-BUILD/src/wallet/wallet2.cpp:4055 1. THROW EXCEPTION: error::tx_not_possible
+2017-Jan-25 18:28:23.013649 [RPC0]/DISTRIBUTION-BUILD/src/wallet/wallet2.cpp:4055:N5tools5error15tx_not_possibleE: tx not possible, available = 0.000100000000, tx_amount = 0.000000000001, fee = 0.021248639243
+2017-Jan-25 18:47:14.495921 [RPC0]Received money: 0.957408556524, with tx: <33a2b886f182cc1a17458c711b66f7543fe733adf028331773e5b1afee77808a>
+2017-Jan-25 18:47:14.495979 [RPC0]Spent money: 0.978658195767, with tx: <33a2b886f182cc1a17458c711b66f7543fe733adf028331773e5b1afee77808a>
+2017-Jan-25 19:37:08.748103 [RPC0]selected transfers: 
+2017-Jan-25 19:37:08.970487 [RPC0]amount=0.413230137593, real_output=3, real_output_in_tx_index=1, indexes: 54046 63055 67993 70131 
+2017-Jan-25 19:37:09.201154 [RPC0]selected transfers: 
+2017-Jan-25 19:37:09.397026 [RPC0]amount=0.413230137593, real_output=3, real_output_in_tx_index=1, indexes: 14911 31654 64284 70131 
+2017-Jan-25 19:37:09.529962 [RPC0]Transaction successfully sent. <<99d5d2407954fcbe064d95c4795190bdc94a0ab2fd72fff99f546d001e5c4d19>>
+Commission: 0.022045754185 (dust sent to dust addr: 0.000000000000)
+Balance: 1.348692929932
+Unlocked: 0.957508556524
+Please, wait for confirmation for your balance to be unlocked.
+2017-Jan-25 19:38:56.473533 [RPC0]Received money: 0.391184373408, with tx: <99d5d2407954fcbe064d95c4795190bdc94a0ab2fd72fff99f546d001e5c4d19>
+2017-Jan-25 19:38:56.473651 [RPC0]Spent money: 0.413230137593, with tx: <99d5d2407954fcbe064d95c4795190bdc94a0ab2fd72fff99f546d001e5c4d19>
+2017-Jan-26 09:13:42.982500 [SRV_MAIN]net_service loop stopped.
+2017-Jan-26 09:13:42.982548 [SRV_MAIN]Stopped wallet rpc server
+2017-Jan-26 09:13:42.982558 [SRV_MAIN]Storing wallet...
+2017-Jan-26 09:13:43.241940 [SRV_MAIN]Stored ok
+2017-Jan-26 09:16:55.306766 Monero 'Wolfram Warptangent' (v0.10.1.0-release)
+2017-Jan-26 09:16:55.306820 Setting log level = 0
+2017-Jan-26 09:16:55.306839 default_log: monero-wallet-cli.log
+2017-Jan-26 09:16:55.306866 Logging at log level 0 to /home/henry/GitHub/monero-mobile-wallet2/./log/monero-wallet-cli.log
+2017-Jan-26 09:16:55.306896 Loading wallet...
+2017-Jan-26 09:16:55.365424 Loaded wallet keys file, with public address: 48m9rmiEqmYBDjKesakDwMFDNpJ6gHxrDB5LBKn4R26V7FH8sZh1xEuLhdmqteKX1WbVLw1DfeKTQK6tuzZvwFrxSbzr52n
+2017-Jan-26 09:16:57.720103 Loaded ok
+2017-Jan-26 09:16:57.720639 Binding on 127.0.0.1:18082
+2017-Jan-26 09:16:57.721102 Starting wallet rpc server
+2017-Jan-26 09:16:57.721252 Run net_service loop( 1 threads)...
+2017-Jan-26 18:28:01.870267 [RPC0]selected transfers: 
+2017-Jan-26 18:28:02.068879 [RPC0]amount=0.957408556524, real_output=2, real_output_in_tx_index=1, indexes: 56868 69822 70238 70907 
+2017-Jan-26 18:28:02.260248 [RPC0]selected transfers: 
+2017-Jan-26 18:28:02.462291 [RPC0]amount=0.957408556524, real_output=3, real_output_in_tx_index=1, indexes: 43630 57520 69839 70238 
+2017-Jan-26 18:28:02.605363 [RPC0]Transaction successfully sent. <<f6a6e8726347c04e9818c2102137f9e8c4e4d1d12ab8a2e7b013bac2358b36a5>>
+Commission: 0.022902110647 (dust sent to dust addr: 0.000000000000)
+Balance: 1.325790818285
+Unlocked: 0.391284373408
+Please, wait for confirmation for your balance to be unlocked.
+2017-Jan-26 18:29:33.530211 [RPC0]selected transfers: 
+2017-Jan-26 18:29:33.730905 [RPC0]amount=0.391184373408, real_output=2, real_output_in_tx_index=1, indexes: 38094 66077 70392 71030 
+2017-Jan-26 18:29:33.906824 [RPC0]selected transfers: 
+2017-Jan-26 18:29:34.102055 [RPC0]amount=0.391184373408, real_output=3, real_output_in_tx_index=1, indexes: 26383 48175 48254 70392 
+2017-Jan-26 18:29:34.263129 [RPC0]Transaction successfully sent. <<eb59b7828751cafac5550b42086db48a110ecf4dc5a3c89d6a2d7af0d57b4fe8>>
+Commission: 0.022902025900 (dust sent to dust addr: 0.000000000000)
+Balance: 1.302888790385
+Unlocked: 0.000100000000
+Please, wait for confirmation for your balance to be unlocked.
+2017-Jan-26 18:29:34.311158 [RPC0]Received money: 0.934506444877, with tx: <f6a6e8726347c04e9818c2102137f9e8c4e4d1d12ab8a2e7b013bac2358b36a5>
+2017-Jan-26 18:29:34.311205 [RPC0]Spent money: 0.957408556524, with tx: <f6a6e8726347c04e9818c2102137f9e8c4e4d1d12ab8a2e7b013bac2358b36a5>
+2017-Jan-26 18:30:14.703433 [RPC0]ERROR /DISTRIBUTION-BUILD/src/wallet/wallet2.cpp:3986 0 == dt.amount. THROW EXCEPTION: error::zero_destination
+2017-Jan-26 18:30:14.703527 [RPC0]/DISTRIBUTION-BUILD/src/wallet/wallet2.cpp:3986:N5tools5error16zero_destinationE: destination amount is zero
+2017-Jan-26 18:30:29.116850 [RPC0]selected transfers: 
+2017-Jan-26 18:30:29.309846 [RPC0]amount=0.000100000000, real_output=1, real_output_in_tx_index=0, indexes: 47028 61496 71839 73851 
+2017-Jan-26 18:30:29.373854 [RPC0]ERROR /DISTRIBUTION-BUILD/src/wallet/wallet2.cpp:4055 1. THROW EXCEPTION: error::tx_not_possible
+2017-Jan-26 18:30:29.373889 [RPC0]/DISTRIBUTION-BUILD/src/wallet/wallet2.cpp:4055:N5tools5error15tx_not_possibleE: tx not possible, available = 0.000100000000, tx_amount = 0.000000000100, fee = 0.022902025900
+2017-Jan-26 18:32:02.715559 [RPC0]Received money: 0.368282345508, with tx: <eb59b7828751cafac5550b42086db48a110ecf4dc5a3c89d6a2d7af0d57b4fe8>
+2017-Jan-26 18:32:02.715656 [RPC0]Spent money: 0.391184373408, with tx: <eb59b7828751cafac5550b42086db48a110ecf4dc5a3c89d6a2d7af0d57b4fe8>
+2017-Jan-27 10:58:56.446055 [RPC0]Expected 1 tx, got 0
+2017-Jan-27 11:06:36.172797 [RPC0]selected transfers: 
+2017-Jan-27 11:06:36.375121 [RPC0]amount=0.934506444877, real_output=3, real_output_in_tx_index=1, indexes: 35752 49328 49977 74788 
+2017-Jan-27 11:06:36.569366 [RPC0]selected transfers: 
+2017-Jan-27 11:06:36.771371 [RPC0]amount=0.934506444877, real_output=3, real_output_in_tx_index=1, indexes: 56049 70562 70726 74788 
+2017-Jan-27 11:06:36.945613 [RPC0]Transaction successfully sent. <<2e1ceabe1b2233c8a1b324e8be4ac259f08cf62843b1cf354e9014cfac7779f6>>
+Commission: 0.022881264250 (dust sent to dust addr: 0.000000000000)
+Balance: 1.280007526035
+Unlocked: 0.368382345508
+Please, wait for confirmation for your balance to be unlocked.
+2017-Jan-27 11:09:05.412711 [RPC0]Received money: 0.911625180527, with tx: <2e1ceabe1b2233c8a1b324e8be4ac259f08cf62843b1cf354e9014cfac7779f6>
+2017-Jan-27 11:09:05.412871 [RPC0]Spent money: 0.934506444877, with tx: <2e1ceabe1b2233c8a1b324e8be4ac259f08cf62843b1cf354e9014cfac7779f6>
+2017-Jan-27 16:43:32.135952 [RPC0]Expected 1 tx, got 0
+2017-Jan-27 16:43:32.222641 [RPC0]Expected 1 tx, got 0
+2017-Jan-27 16:43:32.309289 [RPC0]Expected 1 tx, got 0
+2017-Jan-27 16:43:32.395928 [RPC0]Expected 1 tx, got 0
+2017-Jan-27 17:16:51.949228 [RPC0]selected transfers: 
+2017-Jan-27 17:16:52.328188 [RPC0]amount=0.368282345508, real_output=3, real_output_in_tx_index=1, indexes: 59444 61385 63007 74806 
+2017-Jan-27 17:16:52.549460 [RPC0]selected transfers: 
+2017-Jan-27 17:16:52.751140 [RPC0]amount=0.368282345508, real_output=3, real_output_in_tx_index=1, indexes: 40626 49040 64724 74806 
+2017-Jan-27 17:16:52.911878 [RPC0]Transaction successfully sent. <<5efd1965e11e174a82766d76a21ad8ea7c83f0500e35a8eee7c84f61ae5cce16>>
+Commission: 0.022872568758 (dust sent to dust addr: 0.000000000000)
+Balance: 1.174490329178
+Unlocked: 0.911725180527
+Please, wait for confirmation for your balance to be unlocked.
+2017-Jan-27 17:20:39.417661 [RPC0]Received money: 0.262765148651, with tx: <5efd1965e11e174a82766d76a21ad8ea7c83f0500e35a8eee7c84f61ae5cce16>
+2017-Jan-27 17:20:39.417768 [RPC0]Spent money: 0.368282345508, with tx: <5efd1965e11e174a82766d76a21ad8ea7c83f0500e35a8eee7c84f61ae5cce16>
+2017-Jan-27 17:22:08.776498 [RPC0]ERROR /DISTRIBUTION-BUILD/contrib/epee/include/net/http_client.h:351 HTTP_CLIENT: Failed to SEND
+2017-Jan-27 17:22:08.776580 [RPC0]ERROR /DISTRIBUTION-BUILD/src/wallet/wallet2.cpp:1336 !r. THROW EXCEPTION: error::no_connection_to_daemon
+2017-Jan-27 17:22:08.776622 [RPC0]/DISTRIBUTION-BUILD/src/wallet/wallet2.cpp:1336:N5tools5error23no_connection_to_daemonE: no connection to daemon, request = get_transaction_pool
+2017-Jan-27 17:22:08.777015 [SRV_MAIN]net_service loop stopped.
+2017-Jan-27 17:22:08.777094 [SRV_MAIN]Stopped wallet rpc server
+2017-Jan-27 17:22:08.777135 [SRV_MAIN]Storing wallet...
+2017-Jan-27 17:22:08.981998 [SRV_MAIN]Stored ok
+2017-Jan-27 17:23:27.335254 Monero 'Wolfram Warptangent' (v0.10.1.0-release)
+2017-Jan-27 17:23:27.335458 Setting log level = 0
+2017-Jan-27 17:23:27.335473 default_log: monero-wallet-cli.log
+2017-Jan-27 17:23:27.335495 Logging at log level 0 to /home/henry/GitHub/monero-mobile-wallet2/./log/monero-wallet-cli.log
+2017-Jan-27 17:23:27.335523 Loading wallet...
+2017-Jan-27 17:23:27.371049 Loaded wallet keys file, with public address: 48m9rmiEqmYBDjKesakDwMFDNpJ6gHxrDB5LBKn4R26V7FH8sZh1xEuLhdmqteKX1WbVLw1DfeKTQK6tuzZvwFrxSbzr52n
+2017-Jan-27 17:23:47.659535 Loaded ok
+2017-Jan-27 17:23:47.659664 Binding on 127.0.0.1:18082
+2017-Jan-27 17:23:47.660178 Starting wallet rpc server
+2017-Jan-27 17:23:47.660197 Run net_service loop( 1 threads)...
+2017-Jan-27 18:48:24.692268 [RPC0]selected transfers: 
+2017-Jan-27 18:48:25.841221 [RPC0]amount=0.911625180527, real_output=3, real_output_in_tx_index=1, indexes: 32652 68288 68390 77744 
+2017-Jan-27 18:48:26.038974 [RPC0]selected transfers: 
+2017-Jan-27 18:48:26.229550 [RPC0]amount=0.911625180527, real_output=3, real_output_in_tx_index=1, indexes: 15463 33462 58445 77744 
+2017-Jan-27 18:48:26.365356 [RPC0]Transaction successfully sent. <<56397d819bb187050bcf4e9b121f24ceb79aa155e1d9179b07c359f15f6758e5>>
+Commission: 0.021159039889 (dust sent to dust addr: 0.000000000000)
+Balance: 1.152500635103
+Unlocked: 0.262865148651
+Please, wait for confirmation for your balance to be unlocked.
+2017-Jan-27 18:49:51.208124 [RPC0]Received money: 0.889635486452, with tx: <56397d819bb187050bcf4e9b121f24ceb79aa155e1d9179b07c359f15f6758e5>
+2017-Jan-27 18:49:51.208165 [RPC0]Spent money: 0.911625180527, with tx: <56397d819bb187050bcf4e9b121f24ceb79aa155e1d9179b07c359f15f6758e5>
+2017-Jan-27 19:07:32.477804 [SRV_MAIN]net_service loop stopped.
+2017-Jan-27 19:07:32.477910 [SRV_MAIN]Stopped wallet rpc server
+2017-Jan-27 19:07:32.477962 [SRV_MAIN]Storing wallet...
+2017-Jan-27 19:07:32.820795 [SRV_MAIN]Stored ok
+2017-Jan-27 19:07:47.531302 Monero 'Wolfram Warptangent' (v0.10.1.0-release)
+2017-Jan-27 19:07:47.531357 Setting log level = 0
+2017-Jan-27 19:07:47.531370 default_log: monero-wallet-cli.log
+2017-Jan-27 19:07:47.531389 Logging at log level 0 to /home/henry/GitHub/monero-mobile-wallet2/./log/monero-wallet-cli.log
+2017-Jan-27 19:07:47.531409 Loading wallet...
+2017-Jan-27 19:07:47.575058 Loaded wallet keys file, with public address: 48m9rmiEqmYBDjKesakDwMFDNpJ6gHxrDB5LBKn4R26V7FH8sZh1xEuLhdmqteKX1WbVLw1DfeKTQK6tuzZvwFrxSbzr52n
+2017-Jan-27 19:08:28.552964 Loaded ok
+2017-Jan-27 19:08:28.553258 Binding on 127.0.0.1:18082
+2017-Jan-27 19:08:28.553393 Starting wallet rpc server
+2017-Jan-27 19:08:28.553441 Run net_service loop( 1 threads)...
+2017-Jan-27 21:00:47.300060 Monero 'Wolfram Warptangent' (v0.10.1.0-release)
+2017-Jan-27 21:00:47.300122 Setting log level = 0
+2017-Jan-27 21:00:47.300138 default_log: monero-wallet-cli.log
+2017-Jan-27 21:00:47.300168 Logging at log level 0 to /home/henry/GitHub/monero-mobile-wallet2/./log/monero-wallet-cli.log
+2017-Jan-27 21:00:47.300192 Loading wallet...
+2017-Jan-27 21:00:47.300287 ERROR /DISTRIBUTION-BUILD/src/wallet/wallet2.cpp:2279 e || !exists. THROW EXCEPTION: error::file_not_found
+2017-Jan-27 21:00:47.300316 /DISTRIBUTION-BUILD/src/wallet/wallet2.cpp:2279:N5tools5error15file_error_baseILi1EEE: file not found "./wallets/testWallet.keys"
+2017-Jan-27 21:00:47.300426 ERROR /DISTRIBUTION-BUILD/src/wallet/wallet_rpc_server.cpp:1205 Wallet initialization failed: file not found "./wallets/testWallet.keys"
+2017-Jan-27 21:01:21.967661 Monero 'Wolfram Warptangent' (v0.10.1.0-release)
+2017-Jan-27 21:01:21.967691 Setting log level = 0
+2017-Jan-27 21:01:21.967697 default_log: monero-wallet-cli.log
+2017-Jan-27 21:01:21.967707 Logging at log level 0 to /home/henry/GitHub/monero-mobile-wallet2/./log/monero-wallet-cli.log
+2017-Jan-27 21:01:21.967716 Loading wallet...
+2017-Jan-27 21:01:22.073986 Loaded wallet keys file, with public address: 48m9rmiEqmYBDjKesakDwMFDNpJ6gHxrDB5LBKn4R26V7FH8sZh1xEuLhdmqteKX1WbVLw1DfeKTQK6tuzZvwFrxSbzr52n
+2017-Jan-27 21:01:39.701715 Loaded ok
+2017-Jan-27 21:01:39.702639 Binding on 127.0.0.1:18082
+2017-Jan-27 21:01:39.702991 Starting wallet rpc server
+2017-Jan-27 21:01:39.703078 Run net_service loop( 1 threads)...

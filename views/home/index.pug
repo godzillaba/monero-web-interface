@@ -1,0 +1,42 @@
+html(lang='en')
+  head
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    // Angular Material style sheet
+    link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic')
+    link(rel='stylesheet', href='https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css')
+    link(rel='stylesheet', href='/public/style.css')
+    link(rel='stylesheet', href='https://fonts.googleapis.com/icon?family=Material+Icons')
+
+  body(ng-app='angularModule', ng-cloak='')
+    div(class='main-container')
+      md-toolbar
+        h1.md-toolbar-tools Monero Wallet
+      section
+        //- md-sidenav.md-sidenav-left(md-is-locked-open='true', md-whiteframe='4')
+          md-content(layout-padding)
+            p Sidenav shit bitches - put some links in here
+
+        //- div(layout='col', flex='grow')
+        #dash(flex='grow')
+          include dash.pug
+
+    script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js')
+    script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js')
+    script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js')
+    script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js')
+    script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.js')
+    // Angular Material Library
+    script(src='https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js')
+
+    script(src='/public/angular/angularModule.js')
+
+    script(src='/public/angular/home/modifyHttpPromise.service.js')
+    script(src='/public/angular/home/poloniex.service.js')
+    script(src='/public/angular/home/pricesDB.service.js')
+    script(src='/public/angular/home/currencyHelper.service.js')
+    script(src='/public/angular/home/moneroRpc.service.js')
+    script(src='/public/angular/home/wallet.service.js')
+
+    script(src='/public/angular/home/atomicToXmrFiat.filter.js')
+
+    script(src='/public/angular/home/home.controller.js')

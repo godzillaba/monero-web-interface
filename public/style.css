@@ -1,0 +1,44 @@
+
+.main-container {
+    display: flex;
+    height: 100%;
+    flex-flow: column;
+}
+
+
+#balance-container > * {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+#balance {
+    font-size: 12px
+}
+#unlocked-balance {
+    font-size: 10px;
+}
+
+
+/*.tx-dialog > md-dialog {
+    min-width: 600px;
+}
+.tx-dialog md-dialog-content {
+    display: flex;
+    flex-flow: row wrap;
+}*/
+/*.tx-dialog .flex-child > md-input-container {
+width: 100%;
+}*/
+
+
+.trans-entry {
+    border-left: 3px solid transparent;
+}
+.trans-entry.trans-in {
+    border-left-color: green;
+}
+.trans-entry.trans-out {
+    border-left-color: red;
+}
+.trans-entry.trans-pending {
+    border-left-color: lightgray;
+}
