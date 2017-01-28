@@ -13,12 +13,12 @@ div(ng-controller='homeCtrl as vm' ng-cloak)
 
     div(ng-click='vm.fp = !vm.fp' style='cursor: pointer;' flex-order='0')
       span.md-headline
-        | {{ vm.wallet.getBalance() | atomicToXmrFiat:vm.fp }}
-        |  &asymp; {{ vm.wallet.getBalance() | atomicToXmrFiat:!vm.fp }}
+        | {{ vm.wallet.getBalance() | toXmrFiat:vm.fp }}
+        |  &asymp; {{ vm.wallet.getBalance() | toXmrFiat:!vm.fp }}
       span.md-caption(ng-show='vm.wallet.getBalance() != vm.wallet.getUnlockedBalance()')
         br
         md-icon(style='font-size: 16px; line-height: 1.4; margin-right: -4px;') lock_open
-        | {{ vm.wallet.getUnlockedBalance() | atomicToXmrFiat:vm.fp }}
+        | {{ vm.wallet.getUnlockedBalance() | toXmrFiat:vm.fp }}
 
   md-list
     md-list-item.md-3-line.trans-entry(
@@ -34,10 +34,9 @@ div(ng-controller='homeCtrl as vm' ng-cloak)
         p(hide show-gt-sm) txid: {{ trans.txid }}
 
       .md-list-item-text(style='text-align: right;')
-        div
-          h3.trans-amt {{ trans.total_amount | atomicToXmrFiat:vm.fp }}
-          //- p(ng-if='trans.fee') fee: {{ trans.fee | atomicToXmrFiat:vm.fp }}
-          p {{ trans.total_amount | atomicToXmrFiat:!vm.fp }}
+        h3.trans-amt {{ trans.total_amount | toXmrFiat:vm.fp }}
+        //- p(ng-if='trans.fee') fee: {{ trans.fee | toXmrFiat:vm.fp }}
+        p {{ trans.total_amount | toXmrFiat:!vm.fp }}
 
 
   div(style='visibility: hidden;')
@@ -90,16 +89,22 @@ div(ng-controller='homeCtrl as vm' ng-cloak)
           md-button.md-primary(
             ng-disabled='!vm.sendForm.$valid'
             ng-click='vm.confirmSend();'
-          ) Send
+          ) Next
 
   div(style='visibility: hidden;')
     #confirm-send-dialog.md-dialog-container
       md-dialog(layout-padding)
         md-dialog-content
-          h2 Confirm Transaction
+          h2 Confirm Send
+          h4 Amount: {{ vm.sendTX.amount | toXmrFiat:vm.fp:false }} &asymp; {{ vm.sendTX.amount | toXmrFiat:!vm.fp:false }}
+          p.md-caption Address: {{ vm.sendTX.address }}
+          p.md-caption Payment ID:
+            span(ng-show='vm.sendTX.address.length > 95')  (Integrated Address)
+            span(ng-hide='vm.sendTX.address.length > 95')  {{ vm.sendTX.payment_id || 'none' }}
+          p.md-caption Mixin: {{ vm.sendTX.mixin }}
         md-dialog-actions
-          md-button.md-primary(ng-click='vm.hideDialog();') FUk dat
-          md-button.md-primary(ng-click='vm.sendFunds();') Confirm
+          md-button.md-primary(ng-click='vm.hideDialog();') Cancel
+          md-button.md-primary(ng-click='vm.sendFunds();') Send
 
 
   div(style='visibility: hidden;')

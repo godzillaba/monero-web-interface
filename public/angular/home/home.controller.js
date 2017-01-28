@@ -30,9 +30,9 @@ function homeController(_pricesDB, _wallet, currencyHelper, $rootScope, $mdDialo
     return {
       address: '',
       payment_id: '',
+      amountFiat: '',
       amount: '', // NOTE: THIS WILL BE IN BASE UNITS (HUMAN READABLE),
       atomicAmount: 0, // calculated using amount
-      amountFiat: '',
       mixin: 3
     }
   }
@@ -54,17 +54,14 @@ function homeController(_pricesDB, _wallet, currencyHelper, $rootScope, $mdDialo
   function sendFunds() {
     vm.sendTX.atomicAmount = currencyHelper.toAtomic(vm.sendTX.amount);
     vm.wallet.transfer(vm.sendTX).then((res) => {
-      console.log(res.data);
-      var err = res.data.error;
-      if (err) {
-        showToast('Ecode ' + err.code + ': ' + err.message);
-      }
-      else {
-        vm.sendTX = new Transaction();
-        showToast('sent funds successfully!');
-      }
       hideDialog();
+      showToast('sent funds successfully!');
+      vm.sendTX = new Transaction();
       vm.wallet.refresh();
+    }).catch((res) => {
+      var err = res.data.error;
+      showToast('Ecode ' + err.code + ': ' + err.message);
+      showDialog('#send-dialog');
     });
   }
 

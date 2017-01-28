@@ -1,7 +1,10 @@
 angular.module('angularModule')
-.filter('atomicToXmrFiat', ['currencyHelper', '$filter', function(ch, $f) {
-  function filter(input, fiat=true) {
-    input = ch.fromAtomic(input);
+.filter('toXmrFiat', ['currencyHelper', '$filter', function(ch, $f) {
+  function filter(input, fiat=true, atomic=true) {
+    input = ch.toNearestAtom(input);
+
+    if (atomic)
+      input = ch.fromAtomic(input);
 
     if (!fiat)
       return input + " XMR"
