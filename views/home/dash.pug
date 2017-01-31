@@ -56,7 +56,7 @@ div(ng-controller='homeCtrl as vm' ng-cloak)
               md-input-container(flex='75')
                 label Payment ID
                 input(
-                  ng-model='vm.sendTX.payment_id'
+                  ng-model='vm.sendTX.paymentID'
                   ng-disabled='vm.sendTX.address.length > 95'
                   type='text'
                 )
@@ -69,7 +69,7 @@ div(ng-controller='homeCtrl as vm' ng-cloak)
                 label XMR
                 input(
                   ng-model='vm.sendTX.amount'
-                  ng-change='vm.syncSendAmounts(true);'
+                  ng-change='vm.sendTX.syncAmounts(true);'
                   type='text'
                   required
                 )
@@ -79,7 +79,7 @@ div(ng-controller='homeCtrl as vm' ng-cloak)
                 label USD
                 input(
                   ng-model='vm.sendTX.amountFiat'
-                  ng-change='vm.syncSendAmounts(false);'
+                  ng-change='vm.sendTX.syncAmounts(false);'
                   type='text'
                   required
                 )
@@ -100,7 +100,7 @@ div(ng-controller='homeCtrl as vm' ng-cloak)
           p.md-caption Address: {{ vm.sendTX.address }}
           p.md-caption Payment ID:
             span(ng-show='vm.sendTX.address.length > 95')  (Integrated Address)
-            span(ng-hide='vm.sendTX.address.length > 95')  {{ vm.sendTX.payment_id || 'none' }}
+            span(ng-hide='vm.sendTX.address.length > 95')  {{ vm.sendTX.paymentID || 'none' }}
           p.md-caption Mixin: {{ vm.sendTX.mixin }}
         md-dialog-actions
           md-button.md-primary(ng-click='vm.hideDialog();') Cancel
@@ -109,9 +109,69 @@ div(ng-controller='homeCtrl as vm' ng-cloak)
 
   div(style='visibility: hidden;')
     #receive-dialog.tx-dialog.md-dialog-container
+      //- md-dialog(flex layout-padding style='word-wrap: break-word;')
       md-dialog(layout-padding)
-        md-dialog-content
+        md-dialog-content(style='word-wrap: break-word;')
           h1 Receive Monero
-          p hi
+
+          //- div(flex layout='row')
+          //-   div(flex='50')
+          //-     md-input-container
+          //-       label Amount
+          //-       input(ng-model='' type='text')
+          //-   div(flex='50')
+          //-     md-input-container
+          //-       label Amount
+          //-       input(ng-model='' type='text')
+
+          #receive-params(flex layout='row' layout-wrap)
+            #receive-qr
+              div
+                qrcode(
+                  data='{{ vm.recTX.uri }}'
+                  size='200'
+                  version='10'
+                )
+                a(href='{{ vm.recTX.uri }}')
+            md-input-container(flex='50')
+              label XMR
+              input(
+                ng-model='vm.recTX.amount'
+                ng-change='vm.recTX.syncAmounts(true); vm.recTX.makeUri()'
+                type='text'
+              )
+            md-input-container(flex='50')
+              label USD
+              input(
+                ng-model='vm.recTX.amountFiat'
+                ng-change='vm.recTX.syncAmounts(false); vm.recTX.makeUri()'
+                type='text'
+              )
+            md-input-container(flex='50')
+              label Recipient Name
+              input(
+                ng-model='vm.recTX.name'
+                ng-change='vm.recTX.makeUri()'
+                type='text'
+              )
+            md-input-container(flex='50')
+              label Description
+              input(
+                ng-model='vm.recTX.description'
+                ng-change='vm.recTX.makeUri()'
+                type='text'
+              )
+
+          div
+            md-checkbox(ng-model='vm.showIntegrated' ng-change='vm.updateRecAddr();') Integrated Address
+
+
+          p.md-caption(ng-show='vm.showIntegrated') Address: #[code {{ vm.recTX.integAddr }}]
+          p.md-caption(ng-hide='vm.showIntegrated') Address: #[code {{ vm.wallet.getAddress() }}]
+          p.md-caption Payment ID: #[code {{ vm.recTX.paymentID }}]
+          md-button.md-primary(
+            ng-click='vm.recTX.newID()'
+            style='margin-left: 0;'
+          ) New Payment ID
         md-dialog-actions
           md-button.md-primary(ng-click='vm.hideDialog();') Close

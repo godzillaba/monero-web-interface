@@ -14,6 +14,27 @@ angular.module('angularModule')
       address = res.data.result.address;
     });
   }
+
+  function fetchIntegratedAddress() {
+    var ans = {};
+    return new Promise(function(resolve, reject) {
+      walletRpc('make_integrated_address').then((res) => {
+        ans.address = res.data.result.integrated_address;
+
+        walletRpc('split_integrated_address', {
+          integrated_address: ans.address
+        }).then((res) => {
+
+          ans.paymentID = res.data.result.payment_id;
+          resolve(ans);
+
+        }).catch(reject);
+
+      }).catch(reject);
+
+    });
+  }
+
   function loadBalance() {
     walletRpc('getbalance').then((res) => {
       balance = res.data.result.balance;
@@ -27,7 +48,7 @@ angular.module('angularModule')
       out: true,
       pending: true,
       failed: true,
-      pool: false
+      pool: false // wt is pool?
     }).then((res) => {
       var r = res.data.result;
       for (var k in r) {
@@ -39,6 +60,27 @@ angular.module('angularModule')
         }
       }
     });
+  }
+  function transfer(tx) {
+    return walletRpc('transfer', {
+      destinations: [{
+        amount: parseInt(tx.atomicAmount),
+        address: tx.address
+      }],
+      mixin: parseInt(tx.mixin),
+      payment_id: tx.paymentID,
+      get_tx_key: true // wtf is this?!
+    });
+  }
+
+  function makeUri(tx) {
+    var params = {
+      address: tx.integAddr,
+      amount: parseInt(tx.atomicAmount) || null,
+      recipient_name: tx.name || null,
+      tx_description: tx.description || null
+    }
+    return walletRpc('make_uri', params);
   }
 
   function refresh() {
@@ -52,19 +94,10 @@ angular.module('angularModule')
   function getUnlockedBalance() { return unlockedBalance; }
   function getTransfers() { return transfers; }
 
-  function transfer(tx) {
-    return walletRpc('transfer', {
-      destinations: [{
-        amount: parseInt(tx.atomicAmount),
-        address: tx.address
-      }],
-      mixin: parseInt(tx.mixin),
-      payment_id: tx.payment_id,
-      get_tx_key: true // wtf is this?!
-    });
-  }
 
   return {
+    fetchIntegratedAddress: fetchIntegratedAddress,
+    makeUri: makeUri,
     getAddress: getAddress,
     getBalance: getBalance,
     getUnlockedBalance: getUnlockedBalance,

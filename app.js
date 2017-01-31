@@ -32,6 +32,7 @@ moneroTools.startDaemon().then(() => {
 app
   .set('view engine', 'pug')
   .use('/public', express.static(__dirname + '/public'))
+  .use('/bower_components', express.static(__dirname + '/bower_components'))
   .use(require('body-parser').json())
   .use(require('./controllers'));
 

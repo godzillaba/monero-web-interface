@@ -17,17 +17,39 @@
     font-size: 10px;
 }
 
-
-/*.tx-dialog > md-dialog {
-    min-width: 600px;
+code {
+  background: rgba(211, 211, 211, .7);
 }
-.tx-dialog md-dialog-content {
-    display: flex;
-    flex-flow: row wrap;
-}*/
-/*.tx-dialog .flex-child > md-input-container {
-width: 100%;
-}*/
+
+
+#receive-params {
+  position: relative;
+  padding-left: 220px;
+  min-height: 220px;
+}
+#receive-qr {
+  position: absolute;
+  top: 0; left: 0;
+}
+#receive-qr a {
+  position: absolute;
+  top: 0; left: 0;
+  width: 200px; height: 200px;
+}
+
+@media (max-width: 960px) {
+  #receive-params {
+    padding-left: 0;
+  }
+  #receive-qr {
+    width: 100%;
+    position: inherit;
+  }
+  #receive-qr > div {
+    width: 200px;
+    margin: auto;
+  }
+}
 
 
 .trans-entry {

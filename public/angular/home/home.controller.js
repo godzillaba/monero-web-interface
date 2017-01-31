@@ -12,39 +12,66 @@ function homeController(_pricesDB, _wallet, currencyHelper, $rootScope, $mdDialo
 
   vm.pricesDB = _pricesDB;
   vm.wallet = _wallet;
+  vm.wallet.refresh();
 
+  vm.showIntegrated = true;
+  vm.recTX = new IncomingTransaction();
+  vm.sendTX = new OutgoingTransaction();
   vm.fp = false;
-  vm.sendTX = new Transaction();
 
   vm.showDialog = showDialog;
   vm.hideDialog = hideDialog;
-  vm.syncSendAmounts = syncSendAmounts;
   vm.confirmSend = confirmSend;
   vm.sendFunds = sendFunds;
-
-  vm.wallet.refresh();
 
   $rootScope.$on('tickerChange', $rootScope.$apply);
 
   function Transaction() {
-    return {
-      address: '',
-      payment_id: '',
-      amountFiat: '',
-      amount: '', // NOTE: THIS WILL BE IN BASE UNITS (HUMAN READABLE),
-      atomicAmount: 0, // calculated using amount
-      mixin: 3
+    this.address = '';
+    this.paymentID = '';
+    this.amountFiat = '';
+    this.amount = '';
+    this.atomicAmount = 0;
+
+    this.syncAmounts = function(useXmr) {
+      if (useXmr)
+        this.amountFiat = currencyHelper.xmrToFiat(this.amount);
+      else
+        this.amount = currencyHelper.fiatToXmr(this.amountFiat);
+      this.atomicAmount = currencyHelper.toAtomic(this.amount);
     }
   }
 
-  function syncSendAmounts(useXmr) {
-    if (useXmr) {
-      vm.sendTX.amountFiat = currencyHelper.xmrToFiat(vm.sendTX.amount);
-    }
-    else {
-      vm.sendTX.amount = currencyHelper.fiatToXmr(vm.sendTX.amountFiat);
-    }
+  function OutgoingTransaction() {
+    Transaction.call(this);
+    this.mixin = 3;
   }
+
+  function IncomingTransaction() {
+    Transaction.call(this);
+    this.integAddr = '';
+    this.name = '';
+    this.description = '';
+    this.uri = '';
+
+    this.newID = function() {
+      vm.wallet.fetchIntegratedAddress().then((ia) => {
+        this.integAddr = ia.address;
+        this.paymentID = ia.paymentID;
+        $rootScope.$apply();
+        this.makeUri();
+      });
+    }
+    this.makeUri = function() {
+      vm.wallet.makeUri(this).then((res) => {
+        this.uri = res.data.result.uri;
+        $rootScope.$apply();
+      });
+    }
+
+    this.newID();
+  }
+
 
   function confirmSend() {
     if (vm.sendForm.$valid)
@@ -52,7 +79,6 @@ function homeController(_pricesDB, _wallet, currencyHelper, $rootScope, $mdDialo
   }
 
   function sendFunds() {
-    vm.sendTX.atomicAmount = currencyHelper.toAtomic(vm.sendTX.amount);
     vm.wallet.transfer(vm.sendTX).then((res) => {
       hideDialog();
       showToast('sent funds successfully!');

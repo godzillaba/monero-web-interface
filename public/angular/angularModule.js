@@ -1,4 +1,4 @@
-angular.module('angularModule', ['ngMaterial', 'ngRoute'])
+angular.module('angularModule', ['ngMaterial', 'ngRoute', 'monospaced.qrcode'])
 // .config(function($routeProvider) {
 //     $routeProvider
 //     .when('/', {
