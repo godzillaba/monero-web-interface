@@ -122,7 +122,7 @@ div(ng-controller='homeCtrl as vm' ng-cloak)
                   size='200'
                   version='10'
                 )
-                a(href='{{ vm.recTX.uri }}')
+                a(href='{{ vm.recTX.uri || "#" }}')
             md-input-container(flex='50')
               label XMR
               input(
