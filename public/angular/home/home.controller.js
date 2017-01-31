@@ -12,7 +12,6 @@ function homeController(_pricesDB, _wallet, currencyHelper, $rootScope, $mdDialo
 
   vm.pricesDB = _pricesDB;
   vm.wallet = _wallet;
-  vm.wallet.refresh();
 
   vm.showIntegrated = true;
   vm.recTX = new IncomingTransaction();

@@ -33,6 +33,7 @@ app
   .set('view engine', 'pug')
   .use('/public', express.static(__dirname + '/public'))
   .use('/bower_components', express.static(__dirname + '/bower_components'))
+  .use('/node_modules', express.static(__dirname + '/node_modules'))
   .use(require('body-parser').json())
   .use(require('./controllers'));
 

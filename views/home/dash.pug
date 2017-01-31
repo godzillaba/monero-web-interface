@@ -114,16 +114,6 @@ div(ng-controller='homeCtrl as vm' ng-cloak)
         md-dialog-content(style='word-wrap: break-word;')
           h1 Receive Monero
 
-          //- div(flex layout='row')
-          //-   div(flex='50')
-          //-     md-input-container
-          //-       label Amount
-          //-       input(ng-model='' type='text')
-          //-   div(flex='50')
-          //-     md-input-container
-          //-       label Amount
-          //-       input(ng-model='' type='text')
-
           #receive-params(flex layout='row' layout-wrap)
             #receive-qr
               div
@@ -167,11 +157,17 @@ div(ng-controller='homeCtrl as vm' ng-cloak)
 
 
           p.md-caption(ng-show='vm.showIntegrated') Address: #[code {{ vm.recTX.integAddr }}]
+            copy-button(text='{{vm.recTX.integAddr}}')
           p.md-caption(ng-hide='vm.showIntegrated') Address: #[code {{ vm.wallet.getAddress() }}]
+            copy-button(text='{{vm.wallet.getAddress()}}')
+
           p.md-caption Payment ID: #[code {{ vm.recTX.paymentID }}]
+            copy-button(text='{{vm.recTX.paymentID}}')
+
           md-button.md-primary(
             ng-click='vm.recTX.newID()'
             style='margin-left: 0;'
           ) New Payment ID
+
         md-dialog-actions
           md-button.md-primary(ng-click='vm.hideDialog();') Close

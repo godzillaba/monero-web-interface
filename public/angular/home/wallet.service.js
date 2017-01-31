@@ -94,7 +94,8 @@ angular.module('angularModule')
   function getUnlockedBalance() { return unlockedBalance; }
   function getTransfers() { return transfers; }
 
-
+  refresh();
+  
   return {
     fetchIntegratedAddress: fetchIntegratedAddress,
     makeUri: makeUri,

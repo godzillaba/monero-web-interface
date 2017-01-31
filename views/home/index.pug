@@ -27,11 +27,15 @@ html(lang='en')
     script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.js')
     // Angular Material Library
     script(src='https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js')
-    script(src='bower_components/qrcode-generator/js/qrcode.js')
-    script(src='bower_components/angular-qrcode/angular-qrcode.js')
+
+    script(src='/node_modules/clipboard/dist/clipboard.js')
+    script(src='/node_modules/ngclipboard/dist/ngclipboard.js')
+    script(src='/node_modules/qrcode-generator/qrcode.js')
+    script(src='/node_modules/angular-qrcode/angular-qrcode.js')
 
     script(src='/public/angular/angularModule.js')
 
+    script(src='/public/angular/home/copyButton.directive.js')
     script(src='/public/angular/home/modifyHttpPromise.service.js')
     script(src='/public/angular/home/poloniex.service.js')
     script(src='/public/angular/home/pricesDB.service.js')
