@@ -1,4 +1,5 @@
 var fs = require('fs');
+var morgan = require('morgan');
 var express = require('express');
 var https = require('https');
 var config = require('config');
@@ -27,12 +28,18 @@ moneroTools.startDaemon().then(() => {
 
 // fs.writeFileSync('./data/ca.pem', KeyPair.getSync('rootCA').cert);
 
-
+morgan.token('remote-user', (req, res) => {
+  var s = req.socket.getPeerCertificate().subject;
+  if (s)
+    return s.CN;
+  else
+    return null;
+});
 
 app
   .set('view engine', 'pug')
+  .use(morgan('common'))
   .use('/public', express.static(__dirname + '/public'))
-  .use('/bower_components', express.static(__dirname + '/bower_components'))
   .use('/node_modules', express.static(__dirname + '/node_modules'))
   .use(require('body-parser').json())
   .use(require('./controllers'));

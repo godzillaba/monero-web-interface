@@ -18,6 +18,7 @@
     "config": "^1.24.0",
     "deasync": "^0.1.9",
     "express": "^4.14.0",
+    "morgan": "^1.7.0",
     "ngclipboard": "^1.1.1",
     "pem": "^1.9.4",
     "pug": "^2.0.0-beta6",

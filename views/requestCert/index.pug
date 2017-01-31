@@ -1,0 +1,12 @@
+html
+  head
+    title Request Certificate
+  body
+    h1 Request Client Certificate
+    h4 Check logs for request code and certificate password
+    form(action='/requestCert/client.pfx' method='get')
+      | Common Name: #[input(type='text' name='cn')]
+      br
+      | Cert Request Code: #[input(type='text' name='code')]
+      br
+      input(type='submit' value='Submit')

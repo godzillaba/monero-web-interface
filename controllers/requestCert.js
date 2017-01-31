@@ -29,16 +29,15 @@ var certReqCode = '', certPass = '';
 router
   .get('/', (req, res) => {
     newCertCodes();
-    res.send("this page will have get form w/ action ./client.pfx");
+    res.render('../views/requestCert/index.pug');
   })
   .get('/client.pfx', (req, res) => {
     if (certReqCode && certReqCode == req.query.code) {
       res.type('pfx');
-      res.send(
-        ClientKeyPair.createSync(req.query.cn, certPass).pkcs12);
+      res.send(ClientKeyPair.createSync(req.query.cn, certPass).pkcs12);
     }
     else {
-      res.send('401 - wrong code dumbass')
+      res.send('401 - wrong code dumbass') // TODO: this duh
     }
     clearCertCodes();
   });
