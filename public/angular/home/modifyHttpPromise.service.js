@@ -4,9 +4,11 @@ angular.module('angularModule')
     return new Promise(function(resolve, reject) {
       httpPromise.then((res) => {
         if (res.data.error)
-          reject(res);
-        resolve(res);
-      }).catch(reject);
+          reject(res.data);
+        resolve(res.data);
+      }).catch((res) => {
+        reject(res.data);
+      });
     });
   }
 });

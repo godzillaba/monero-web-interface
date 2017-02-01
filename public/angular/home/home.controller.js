@@ -9,7 +9,7 @@ angular.module('angularModule')
 function homeController(_pricesDB, _wallet, currencyHelper, $scope, $mdDialog, $mdToast) {
   var vm = this;
   window.vm = vm;
-
+  // TODO: tx notes
   vm.pricesDB = _pricesDB;
   vm.wallet = _wallet;
 
@@ -55,18 +55,24 @@ function homeController(_pricesDB, _wallet, currencyHelper, $scope, $mdDialog, $
     this.uri = '';
 
     this.newID = function() {
-      vm.wallet.fetchIntegratedAddress().then((ia) => {
-        this.integAddr = ia.address;
-        this.paymentID = ia.paymentID;
-        $scope.$apply();
-        this.makeUri();
-      });
+      vm.wallet.makeIntegratedAddress()
+        .then((data) => {
+          this.integAddr = data.result.integrated_address;
+          return vm.wallet.splitIntegratedAddress(this.integAddr);
+        })
+        .then((data) => {
+          this.paymentID = data.result.payment_id;
+          $scope.$apply();
+          return this.makeUri();
+        });
     }
+
     this.makeUri = function() {
-      vm.wallet.makeUri(this).then((res) => {
-        this.uri = res.data.result.uri;
-        $scope.$apply();
-      });
+      vm.wallet.makeUri(this)
+        .then((data) => {
+          this.uri = data.result.uri;
+          $scope.$apply();
+        });
     }
 
     this.newID();
@@ -78,14 +84,15 @@ function homeController(_pricesDB, _wallet, currencyHelper, $scope, $mdDialog, $
       showDialog('#confirm-send-dialog', false);
   }
 
-  function sendFunds() {
-    vm.wallet.transfer(vm.sendTX).then((res) => {
+  function sendFunds() { // TODO: show tx_key to user
+    vm.wallet.transfer(vm.sendTX).then((data) => {
       hideDialog();
-      showToast('sent funds successfully!');
+      showToast('sent funds! - tx_key: ' + data.result.tx_key);
       vm.sendTX = new Transaction();
       vm.wallet.refresh();
-    }).catch((res) => {
-      var err = res.data.error;
+    }).catch((data) => {
+      var err = data.error;
+      console.error(err);
       showToast('Ecode ' + err.code + ': ' + err.message);
       showDialog('#send-dialog');
     });
@@ -104,6 +111,8 @@ function homeController(_pricesDB, _wallet, currencyHelper, $scope, $mdDialog, $
   }
 
   function showToast(text) {
-    $mdToast.show($mdToast.simple().textContent(text));
+    $mdToast.show($mdToast.simple().textContent(text), {
+      hideDelay: 10000
+    });
   }
 }]);

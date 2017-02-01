@@ -4,46 +4,36 @@ angular.module('angularModule')
   var balance;
   var unlockedBalance;
   var transfers;
-
+  // TODO: get rid of getters/setters - like Transaction
   function walletRpc(method, params) {
     return moneroRpc('wallet', method, params);
   }
 
   function loadAddress() {
     return new Promise(function(resolve, reject) {
-      walletRpc('getaddress').then((res) => {
-        address = res.data.result.address;
-        resolve(res);
+      walletRpc('getaddress').then((data) => {
+        address = data.result.address;
+        resolve(data);
       }).catch(reject);
     });
   }
 
-  function fetchIntegratedAddress() {
-    var ans = {};
-    return new Promise(function(resolve, reject) {
-      walletRpc('make_integrated_address').then((res) => {
-        ans.address = res.data.result.integrated_address;
 
-        walletRpc('split_integrated_address', {
-          integrated_address: ans.address
-        }).then((res) => {
-
-          ans.paymentID = res.data.result.payment_id;
-          resolve(ans);
-
-        }).catch(reject);
-
-      }).catch(reject);
-
+  function makeIntegratedAddress() {
+    return walletRpc('make_integrated_address');
+  }
+  function splitIntegratedAddress(addr) {
+    return walletRpc('split_integrated_address', {
+      integrated_address: addr
     });
   }
 
   function loadBalance() {
     return new Promise(function(resolve, reject) {
-      walletRpc('getbalance').then((res) => {
-        balance = res.data.result.balance;
-        unlockedBalance = res.data.result.unlocked_balance;
-        resolve(res);
+      walletRpc('getbalance').then((data) => {
+        balance = data.result.balance;
+        unlockedBalance = data.result.unlocked_balance;
+        resolve(data);
       }).catch(reject);
     });
   }
@@ -56,8 +46,8 @@ angular.module('angularModule')
         pending: true,
         failed: true,
         pool: false // wt is pool?
-      }).then((res) => {
-        var r = res.data.result;
+      }).then((data) => {
+        var r = data.result;
         for (var k in r) {
           for (var i=0; i < r[k].length; i++) {
             var t = r[k][i];
@@ -66,7 +56,7 @@ angular.module('angularModule')
             transfers.push(t);
           }
         }
-        resolve(res);
+        resolve(data);
       }).catch(reject);
     });
   }
@@ -106,7 +96,8 @@ angular.module('angularModule')
   function getTransfers() { return transfers; }
 
   return {
-    fetchIntegratedAddress: fetchIntegratedAddress,
+    makeIntegratedAddress: makeIntegratedAddress,
+    splitIntegratedAddress: splitIntegratedAddress,
     makeUri: makeUri,
     getAddress: getAddress,
     getBalance: getBalance,

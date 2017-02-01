@@ -23,9 +23,9 @@ angular.module('angularModule')
 
   function loadTicker() {
     return new Promise((resolve, reject) => {
-      poloniex.returnTicker().then((res) => {
-        ticker = res.data;
-        resolve(res);
+      poloniex.returnTicker().then((data) => {
+        ticker = data;
+        resolve(data);
       }).catch(reject);
     });
   }
@@ -44,8 +44,8 @@ angular.module('angularModule')
 
   //private
   function loadPrice(ts) {
-    poloniex.returnChartData(pair, ts).then((res) => {
-      db[pair][ts] = res.data[0].weightedAverage;
+    poloniex.returnChartData(pair, ts).then((data) => {
+      db[pair][ts] = data[0].weightedAverage;
       saveToLS();
     });
   }
