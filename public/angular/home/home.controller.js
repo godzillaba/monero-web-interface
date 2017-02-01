@@ -3,15 +3,18 @@ angular.module('angularModule')
   'pricesDB',
   'wallet',
   'currencyHelper',
-  '$rootScope',
+  '$scope',
   '$mdDialog',
   '$mdToast',
-function homeController(_pricesDB, _wallet, currencyHelper, $rootScope, $mdDialog, $mdToast) {
+function homeController(_pricesDB, _wallet, currencyHelper, $scope, $mdDialog, $mdToast) {
   var vm = this;
   window.vm = vm;
 
   vm.pricesDB = _pricesDB;
   vm.wallet = _wallet;
+
+  vm.pricesDB.loadTicker().then($scope.$apply);
+  vm.wallet.refresh().then($scope.$apply);
 
   vm.showIntegrated = true;
   vm.recTX = new IncomingTransaction();
@@ -22,8 +25,6 @@ function homeController(_pricesDB, _wallet, currencyHelper, $rootScope, $mdDialo
   vm.hideDialog = hideDialog;
   vm.confirmSend = confirmSend;
   vm.sendFunds = sendFunds;
-
-  $rootScope.$on('tickerChange', $rootScope.$apply);
 
   function Transaction() {
     this.address = '';
@@ -57,14 +58,14 @@ function homeController(_pricesDB, _wallet, currencyHelper, $rootScope, $mdDialo
       vm.wallet.fetchIntegratedAddress().then((ia) => {
         this.integAddr = ia.address;
         this.paymentID = ia.paymentID;
-        $rootScope.$apply();
+        $scope.$apply();
         this.makeUri();
       });
     }
     this.makeUri = function() {
       vm.wallet.makeUri(this).then((res) => {
         this.uri = res.data.result.uri;
-        $rootScope.$apply();
+        $scope.$apply();
       });
     }
 

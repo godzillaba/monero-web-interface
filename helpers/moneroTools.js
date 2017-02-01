@@ -1,4 +1,5 @@
 var exec = require('child_process').exec;
+var util = require('util');
 var portUsed = require('tcp-port-used');
 var config = require('config');
 var mtc = config.moneroTools;
@@ -20,16 +21,17 @@ function portPromise(port) {
 }
 
 exports.startDaemon = function() {
-  exec('monerod --rpc-bind-port ' + mtc.daemonPort, onExit);
+  var cmd = 'monerod --rpc-bind-port %s %s';
+  exec(util.format(cmd, mtc.daemonPort, mtc.daemonArgs), onExit);
   return portPromise(mtc.daemonPort);
 }
 
 exports.startWallet = function() {
-  exec('monero-wallet-rpc --log-file ./log/monero-wallet-cli.log' +
-    ' --rpc-bind-port ' + mtc.walletPort +
-    ' --wallet-file ' + config.wallet.file +
-    ' --password ' + config.wallet.password,
-    onExit
-  );
+  var cmd = 'monero-wallet-rpc --log-file ./log/monero-wallet-rpc.log \
+    --rpc-bind-port %s --wallet-file %s --password %s %s';
+
+  exec(util.format(
+    cmd, mtc.walletPort, config.wallet.file, config.wallet.password, mtc.walletArgs
+  ), onExit);
   return portPromise(mtc.walletPort);
 }

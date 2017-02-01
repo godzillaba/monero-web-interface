@@ -10,8 +10,11 @@ angular.module('angularModule')
   }
 
   function loadAddress() {
-    walletRpc('getaddress').then((res) => {
-      address = res.data.result.address;
+    return new Promise(function(resolve, reject) {
+      walletRpc('getaddress').then((res) => {
+        address = res.data.result.address;
+        resolve(res);
+      }).catch(reject);
     });
   }
 
@@ -36,29 +39,35 @@ angular.module('angularModule')
   }
 
   function loadBalance() {
-    walletRpc('getbalance').then((res) => {
-      balance = res.data.result.balance;
-      unlockedBalance = res.data.result.unlocked_balance;
+    return new Promise(function(resolve, reject) {
+      walletRpc('getbalance').then((res) => {
+        balance = res.data.result.balance;
+        unlockedBalance = res.data.result.unlocked_balance;
+        resolve(res);
+      }).catch(reject);
     });
   }
   function loadTransfers() {
     transfers = [];
-    walletRpc('get_transfers', {
-      in: true,
-      out: true,
-      pending: true,
-      failed: true,
-      pool: false // wt is pool?
-    }).then((res) => {
-      var r = res.data.result;
-      for (var k in r) {
-        for (var i=0; i < r[k].length; i++) {
-          var t = r[k][i];
-          t.transfer_type = k;
-          t.total_amount = t.amount + (t.fee || 0);
-          transfers.push(t);
+    return new Promise(function(resolve, reject) {
+      walletRpc('get_transfers', {
+        in: true,
+        out: true,
+        pending: true,
+        failed: true,
+        pool: false // wt is pool?
+      }).then((res) => {
+        var r = res.data.result;
+        for (var k in r) {
+          for (var i=0; i < r[k].length; i++) {
+            var t = r[k][i];
+            t.transfer_type = k;
+            t.total_amount = t.amount + (t.fee || 0);
+            transfers.push(t);
+          }
         }
-      }
+        resolve(res);
+      }).catch(reject);
     });
   }
   function transfer(tx) {
@@ -84,9 +93,11 @@ angular.module('angularModule')
   }
 
   function refresh() {
-    loadAddress();
-    loadBalance();
-    loadTransfers();
+    return Promise.all([
+      loadTransfers(),
+      loadAddress(),
+      loadBalance()
+    ]);
   }
 
   function getAddress() { return address; }
@@ -94,8 +105,6 @@ angular.module('angularModule')
   function getUnlockedBalance() { return unlockedBalance; }
   function getTransfers() { return transfers; }
 
-  refresh();
-  
   return {
     fetchIntegratedAddress: fetchIntegratedAddress,
     makeUri: makeUri,

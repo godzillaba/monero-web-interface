@@ -4,6 +4,8 @@
     "password": "testpass"
   },
   "moneroTools": {
+    "daemonArgs": "",
+    "walletArgs": "",
     "daemonPort": 18081,
     "walletPort": 18082,
     "startTimeout": 60000

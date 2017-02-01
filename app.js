@@ -15,18 +15,20 @@ moneroTools.startDaemon().then(() => {
   });
 });
 
-// generate new keys:
-// KeyPair.createSync('rootCA', {
-//     selfSigned: true,
-//     commonName: config.sslKeys.rootCA.commonName
-// });
-// KeyPair.createSync('server', {
-//     serviceKey: KeyPair.getSync('rootCA').key,
-//     serviceCertificate: KeyPair.getSync('rootCA').cert,
-//     commonName: config.sslKeys.server.commonName
-// });
+if (!KeyPair.getSync('rootCA') || !KeyPair.getSync('server')) {
+  // generate new keys
+  KeyPair.createSync('rootCA', {
+      selfSigned: true,
+      commonName: config.sslKeys.rootCA.commonName
+  });
+  KeyPair.createSync('server', {
+      serviceKey: KeyPair.getSync('rootCA').key,
+      serviceCertificate: KeyPair.getSync('rootCA').cert,
+      commonName: config.sslKeys.server.commonName
+  });
 
-// fs.writeFileSync('./data/ca.pem', KeyPair.getSync('rootCA').cert);
+  fs.writeFileSync('./data/ca.pem', KeyPair.getSync('rootCA').cert);
+}
 
 morgan.token('remote-user', (req, res) => {
   var s = req.socket.getPeerCertificate().subject;
@@ -53,12 +55,12 @@ var options = {
   rejectUnauthorized: false
 }
 
+var wsc = config.webServer;
 https.createServer(options, app)
-  .listen(config.webServer.port, config.webServer.host, (err) => {
+  .listen(wsc.port, wsc.host, (err) => {
     if (err) {
       console.error(err);
       process.exit();
     }
-    var wsc = config.webServer;
     console.log('express listening on ' + wsc.host + ':' + wsc.port);
   });

@@ -1,5 +1,5 @@
 angular.module('angularModule')
-.service('pricesDB', ['$rootScope', 'poloniex', function($rootScope, poloniex) {
+.service('pricesDB', ['poloniex', function(poloniex) {
   var pair;
   var db;
   var ticker;
@@ -7,7 +7,6 @@ angular.module('angularModule')
   pair = 'USDT_XMR';
   db = JSON.parse(localStorage.getItem('prices')) || {};
   setPair(pair);
-  loadTicker();
 
   function getPair() {
     return pair;
@@ -23,9 +22,11 @@ angular.module('angularModule')
   }
 
   function loadTicker() {
-    poloniex.returnTicker().then((res) => {
-      ticker = res.data;
-      $rootScope.$broadcast('tickerChange');
+    return new Promise((resolve, reject) => {
+      poloniex.returnTicker().then((res) => {
+        ticker = res.data;
+        resolve(res);
+      }).catch(reject);
     });
   }
   function getCurrentPrice() {
