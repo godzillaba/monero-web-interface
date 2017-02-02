@@ -23,7 +23,6 @@ div(ng-controller='homeCtrl as vm' ng-cloak)
   md-list
     md-list-item.md-3-line.tx-entry(
       ng-repeat='tx in vm.wallet.getTransfers() | orderBy:"-timestamp"'
-      ng-init='rate = vm.pricesDB.getPrice(tx.timestamp)'
       ng-class="'tx-'+tx.txType"
       ng-click='vm.showTXInfo(tx);'
     )
@@ -34,9 +33,9 @@ div(ng-controller='homeCtrl as vm' ng-cloak)
         p(hide show-gt-sm) txid: {{ tx.txid }}
 
       .md-list-item-text(style='text-align: right;')
-        h3.tx-amt {{ tx.totalAmount | toXmrFiat:vm.fp }}
-        //- p(ng-if='tx.fee') fee: {{ tx.fee | toXmrFiat:vm.fp }}
-        p {{ tx.totalAmount | toXmrFiat:!vm.fp }}
+        h3.tx-amt {{ tx.totalAmount | toXmrFiat:vm.fp:tx.timestamp }}
+        //- p(ng-if='tx.fee') fee: {{ tx.fee | toXmrFiat:vm.fp:tx.timestamp }}
+        p {{ tx.totalAmount | toXmrFiat:!vm.fp:tx.timestamp }}
 
   div(style='visibility: hidden;')
     #tx-info-dialog.md-dialog-container
@@ -124,7 +123,7 @@ div(ng-controller='homeCtrl as vm' ng-cloak)
       md-dialog(layout-padding)
         md-dialog-content
           h2 Confirm Send
-          h4 Amount: {{ vm.sendTX.amount | toXmrFiat:vm.fp:false }} &asymp; {{ vm.sendTX.amount | toXmrFiat:!vm.fp:false }}
+          h4 Amount: {{ vm.sendTX.amount | toXmrFiat:vm.fp:undefined:false }} &asymp; {{ vm.sendTX.amount | toXmrFiat:!vm.fp:undefined:false }}
           p.md-caption Address: {{ vm.sendTX.address }}
           p.md-caption Payment ID:
             span(ng-show='vm.sendTX.address.length > 95')  (Integrated Address)
@@ -137,7 +136,6 @@ div(ng-controller='homeCtrl as vm' ng-cloak)
 
   div(style='visibility: hidden;')
     #receive-dialog.tx-dialog.md-dialog-container
-      //- md-dialog(flex layout-padding style='word-wrap: break-word;')
       md-dialog(layout-padding)
         md-dialog-content(style='word-wrap: break-word;')
           h1 Receive Monero

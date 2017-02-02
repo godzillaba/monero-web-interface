@@ -13,11 +13,16 @@ angular.module('angularModule')
     return x/ATOMIC_SIZE;
   }
 
-  function xmrToFiat(amt) {
-    return amt*pdb.getCurrentPrice();
+  function xmrToFiat(amt, ts=undefined) {
+    var price;
+    if (ts)
+      price = pdb.getPrice(ts);
+    else
+      price = pdb.getCurrentPrice();
+    return amt*price;
   }
-  function fiatToXmr(amt, ts) {
-    return amt/pdb.getCurrentPrice();
+  function fiatToXmr(amt, ts=undefined) {
+    return 1/xmrToFiat(amt, ts);
   }
 
   return {
