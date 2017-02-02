@@ -7,24 +7,35 @@ var KeyPair = require('./models/sslKeyPair');
 var moneroTools = require('./helpers/moneroTools');
 var app = express();
 
+
+function mtExit(error, stdout, stderr) {
+  if (error) {
+    console.error('\n' + error.cmd + '\n  Failed, exit code: ' + error.code);
+    process.exit();
+  }
+}
+
 var mtc = config.moneroTools;
-moneroTools.startDaemon().then(() => {
-  console.log('monerod listening on 127.0.0.1:' + mtc.daemonPort);
-  moneroTools.startWallet().then(() => {
+moneroTools.startDaemon(mtExit)
+  .then(() => {
+    console.log('monerod listening on 127.0.0.1:' + mtc.daemonPort);
+    return moneroTools.startWallet(mtExit);
+  })
+  .then(() => {
     console.log('monero-wallet-rpc listening on 127.0.0.1:' + mtc.walletPort);
   });
-});
+
 
 if (!KeyPair.getSync('rootCA') || !KeyPair.getSync('server')) {
   // generate new keys
   KeyPair.createSync('rootCA', {
-      selfSigned: true,
-      commonName: config.sslKeys.rootCA.commonName
+    selfSigned: true,
+    commonName: config.sslKeys.rootCA.commonName
   });
   KeyPair.createSync('server', {
-      serviceKey: KeyPair.getSync('rootCA').key,
-      serviceCertificate: KeyPair.getSync('rootCA').cert,
-      commonName: config.sslKeys.server.commonName
+    serviceKey: KeyPair.getSync('rootCA').key,
+    serviceCertificate: KeyPair.getSync('rootCA').cert,
+    commonName: config.sslKeys.server.commonName
   });
 
   fs.writeFileSync('./data/ca.pem', KeyPair.getSync('rootCA').cert);

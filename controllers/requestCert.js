@@ -14,11 +14,10 @@ function randString(len, numeric=false) {
   return result;
 }
 
-// TODO: put lengths (4,8) in config file
 function newCertCodes() {
-  certReqCode = randString(4, true);
+  certReqCode = randString(6, true);
   certPass = randString(8);
-  console.log('CERTIFICATE REQUEST CODE: ' + certReqCode);
+  console.log('\n\nCERTIFICATE REQUEST CODE: ' + certReqCode);
   console.log('CERTIFICATE PASSWORD: ' + certPass);
 }
 function clearCertCodes() {

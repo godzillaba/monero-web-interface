@@ -4,29 +4,17 @@ var portUsed = require('tcp-port-used');
 var config = require('config');
 var mtc = config.moneroTools;
 
-function onExit(error, stdout, stderr) {
-  if (error) {
-    console.error("Command failed with exit code " +
-      error.code + ": " + error.cmd);
-    process.exit();
-  }
-}
-
 function portPromise(port) {
-  return new Promise((res, rej) => {
-    portUsed.waitUntilUsed(port, 200, mtc.startTimeout)
-      .then(res)
-      .catch(rej);
-  });
+  return portUsed.waitUntilUsed(port, 200, mtc.startTimeout);
 }
 
-exports.startDaemon = function() {
+exports.startDaemon = function(onExit) {
   var cmd = 'monerod --rpc-bind-port %s %s';
   exec(util.format(cmd, mtc.daemonPort, mtc.daemonArgs), onExit);
   return portPromise(mtc.daemonPort);
 }
 
-exports.startWallet = function() {
+exports.startWallet = function(onExit) {
   var cmd = 'monero-wallet-rpc --log-file ./log/monero-wallet-rpc.log \
     --rpc-bind-port %s --wallet-file %s --password %s %s';
 
