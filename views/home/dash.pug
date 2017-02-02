@@ -21,23 +21,52 @@ div(ng-controller='homeCtrl as vm' ng-cloak)
         | {{ vm.wallet.getUnlockedBalance() | toXmrFiat:vm.fp }}
 
   md-list
-    md-list-item.md-3-line.trans-entry(
-      ng-repeat='trans in vm.wallet.getTransfers() | orderBy:"-timestamp"'
-      ng-init='rate = vm.pricesDB.getPrice(trans.timestamp)'
-      ng-class="'trans-'+trans.transfer_type"
-      ng-click='null'
+    md-list-item.md-3-line.tx-entry(
+      ng-repeat='tx in vm.wallet.getTransfers() | orderBy:"-timestamp"'
+      ng-init='rate = vm.pricesDB.getPrice(tx.timestamp)'
+      ng-class="'tx-'+tx.tx_type"
+      ng-click='vm.showTXInfo(tx);'
     )
 
       .md-list-item-text
-        h4 {{trans.timestamp*1000 | date:'MMM d yyyy @ hh:mm a'}}
-        p(ng-if='trans.payment_id != 0') payment_id: {{ trans.payment_id }}
-        p(hide show-gt-sm) txid: {{ trans.txid }}
+        h4 {{tx.timestamp*1000 | date:'MMM d yyyy - hh:mm a'}}
+        p(ng-if='tx.payment_id != 0') payment_id: {{ tx.payment_id }}
+        p(hide show-gt-sm) txid: {{ tx.txid }}
 
       .md-list-item-text(style='text-align: right;')
-        h3.trans-amt {{ trans.total_amount | toXmrFiat:vm.fp }}
-        //- p(ng-if='trans.fee') fee: {{ trans.fee | toXmrFiat:vm.fp }}
-        p {{ trans.total_amount | toXmrFiat:!vm.fp }}
+        h3.tx-amt {{ tx.total_amount | toXmrFiat:vm.fp }}
+        //- p(ng-if='tx.fee') fee: {{ tx.fee | toXmrFiat:vm.fp }}
+        p {{ tx.total_amount | toXmrFiat:!vm.fp }}
 
+  div(style='visibility: hidden;')
+    #tx-info-dialog.md-dialog-container
+      md-dialog(layout-padding)
+        md-dialog-content
+          h1 Transaction Information
+          p Type: {{ vm.visTX.tx_type }}
+          p Date: {{ vm.visTX.timestamp*1000 | date:'MMMM dd yyyy - hh:mm a' }}
+          p Amount: {{ vm.visTX.total_amount | toXmrFiat:false }}
+          md-input-container.md-block(
+            md-no-float='true'
+            style='margin-bottom: 0;'
+          )
+            textarea(
+              ng-model='vm.visTX.note'
+              ng-model-options='{ debounce: vm.debounce }'
+              ng-change='vm.wallet.setNote(vm.visTX.txid, vm.visTX.note)'
+              placeholder='Note'
+              type='text'
+              rows='1'
+            )
+          p(style='margin-top: 0;') Payment ID: #[code {{ vm.visTX.payment_id == 0 ? 'none' : vm.visTX.payment_id }}]
+          p TX ID: #[code {{ vm.visTX.txid }}]
+          div(ng-show='vm.visTX.fee')
+            p Fee: {{ vm.visTX.fee | toXmrFiat:false }}
+
+
+
+        md-dialog-actions
+          md-button.md-primary(ng-click='vm.hideDialog();') Close
 
   div(style='visibility: hidden;')
     #send-dialog.tx-dialog.md-dialog-container
@@ -103,7 +132,7 @@ div(ng-controller='homeCtrl as vm' ng-cloak)
             span(ng-hide='vm.sendTX.address.length > 95')  {{ vm.sendTX.paymentID || 'none' }}
           p.md-caption Mixin: {{ vm.sendTX.mixin }}
         md-dialog-actions
-          md-button.md-primary(ng-click='vm.hideDialog();') Cancel
+          md-button.md-primary(ng-click='vm.showDialog("#send-dialog");') Back
           md-button.md-primary(ng-click='vm.sendFunds();') Send
 
 
@@ -123,6 +152,7 @@ div(ng-controller='homeCtrl as vm' ng-cloak)
                   version='13'
                 )
                 a(href='{{ vm.recTX.uri || "#" }}')
+            //- TODO: debounce makeUri somehow
             md-input-container(flex='50')
               label XMR
               input(

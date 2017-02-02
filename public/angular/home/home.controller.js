@@ -9,7 +9,8 @@ angular.module('angularModule')
 function homeController(_pricesDB, _wallet, currencyHelper, $scope, $mdDialog, $mdToast) {
   var vm = this;
   window.vm = vm;
-  // TODO: tx notes
+  vm.debounce = 500;
+
   vm.pricesDB = _pricesDB;
   vm.wallet = _wallet;
 
@@ -19,12 +20,14 @@ function homeController(_pricesDB, _wallet, currencyHelper, $scope, $mdDialog, $
   vm.showIntegrated = true;
   vm.recTX = new IncomingTransaction();
   vm.sendTX = new OutgoingTransaction();
+  vm.visTX = null;
   vm.fp = false;
 
   vm.showDialog = showDialog;
   vm.hideDialog = hideDialog;
   vm.confirmSend = confirmSend;
   vm.sendFunds = sendFunds;
+  vm.showTXInfo = showTXInfo;
 
   function Transaction() {
     this.address = '';
@@ -114,5 +117,10 @@ function homeController(_pricesDB, _wallet, currencyHelper, $scope, $mdDialog, $
     $mdToast.show($mdToast.simple().textContent(text), {
       hideDelay: 10000
     });
+  }
+
+  function showTXInfo(tx) {
+    vm.visTX = tx;
+    showDialog('#tx-info-dialog');
   }
 }]);

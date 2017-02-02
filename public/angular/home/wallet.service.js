@@ -4,7 +4,7 @@ angular.module('angularModule')
   var balance;
   var unlockedBalance;
   var transfers;
-  // TODO: get rid of getters/setters - like Transaction
+
   function walletRpc(method, params) {
     return moneroRpc('wallet', method, params);
   }
@@ -51,7 +51,7 @@ angular.module('angularModule')
         for (var k in r) {
           for (var i=0; i < r[k].length; i++) {
             var t = r[k][i];
-            t.transfer_type = k;
+            t.tx_type = k;
             t.total_amount = t.amount + (t.fee || 0);
             transfers.push(t);
           }
@@ -69,6 +69,13 @@ angular.module('angularModule')
       mixin: parseInt(tx.mixin),
       payment_id: tx.paymentID,
       get_tx_key: true // wtf is this?!
+    });
+  }
+
+  function setNote(txid, note) {
+    return walletRpc('set_tx_notes', {
+      txids: [txid],
+      notes: [note]
     });
   }
 
@@ -98,6 +105,7 @@ angular.module('angularModule')
   return {
     makeIntegratedAddress: makeIntegratedAddress,
     splitIntegratedAddress: splitIntegratedAddress,
+    setNote: setNote,
     makeUri: makeUri,
     getAddress: getAddress,
     getBalance: getBalance,

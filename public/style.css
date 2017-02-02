@@ -52,15 +52,15 @@ code {
 }
 
 
-.trans-entry {
+.tx-entry {
     border-left: 3px solid transparent;
 }
-.trans-entry.trans-in {
+.tx-entry.tx-in {
     border-left-color: green;
 }
-.trans-entry.trans-out {
+.tx-entry.tx-out {
     border-left-color: red;
 }
-.trans-entry.trans-pending {
+.tx-entry.tx-pending {
     border-left-color: lightgray;
 }
