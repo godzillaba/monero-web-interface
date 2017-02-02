@@ -10,15 +10,9 @@
     margin-top: 0;
     margin-bottom: 0;
 }
-#balance {
-    font-size: 12px
-}
-#unlocked-balance {
-    font-size: 10px;
-}
 
 code {
-  background: rgba(211, 211, 211, .7);
+  background: rgba(120, 120, 120, .3);
 }
 
 
@@ -56,10 +50,16 @@ code {
     border-left: 3px solid transparent;
 }
 .tx-entry.tx-in {
-    border-left-color: green;
+    border-left-color: #00c853;
+}
+.tx-entry.tx-in .tx-amt {
+  color: #00c853;
 }
 .tx-entry.tx-out {
-    border-left-color: red;
+    border-left-color: #ff5252;
+}
+.tx-entry.tx-out .tx-amt {
+  color: #ff5252;
 }
 .tx-entry.tx-pending {
     border-left-color: lightgray;

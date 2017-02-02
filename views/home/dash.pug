@@ -8,8 +8,8 @@ div(ng-controller='homeCtrl as vm' ng-cloak)
   )
 
     div(flex-order='1' flex-order-gt-sm='-1')
-      md-button(ng-click='vm.showDialog("#send-dialog");') Send
-      md-button(ng-click='vm.showDialog("#receive-dialog");') Receive
+      md-button.md-accent.md-raised(ng-click='vm.showDialog("#send-dialog");') Send
+      md-button.md-accent.md-raised(ng-click='vm.showDialog("#receive-dialog");') Receive
 
     div(ng-click='vm.fp = !vm.fp' style='cursor: pointer;' flex-order='0')
       span.md-headline
@@ -29,7 +29,7 @@ div(ng-controller='homeCtrl as vm' ng-cloak)
     )
 
       .md-list-item-text
-        h4 {{tx.timestamp*1000 | date:'MMM d yyyy - hh:mm a'}}
+        h3 {{tx.timestamp*1000 | date:'MMM d yyyy - hh:mm a'}}
         p(ng-if='tx.payment_id != 0') payment_id: {{ tx.payment_id }}
         p(hide show-gt-sm) txid: {{ tx.txid }}
 
@@ -40,7 +40,7 @@ div(ng-controller='homeCtrl as vm' ng-cloak)
 
   div(style='visibility: hidden;')
     #tx-info-dialog.md-dialog-container
-      md-dialog(layout-padding)
+      md-dialog(layout-padding style='word-wrap: break-word;')
         md-dialog-content
           h1 Transaction Information
           p Type: {{ vm.visTX.tx_type }}
@@ -102,8 +102,7 @@ div(ng-controller='homeCtrl as vm' ng-cloak)
                   type='text'
                   required
                 )
-
-              //- TODO: usd/other fiat conversion
+              //- TODO: other currencies
               md-input-container(flex='50')
                 label USD
                 input(
@@ -194,7 +193,7 @@ div(ng-controller='homeCtrl as vm' ng-cloak)
           p.md-caption Payment ID: #[code {{ vm.recTX.paymentID }}]
             copy-button(text='{{vm.recTX.paymentID}}')
 
-          md-button.md-primary(
+          md-button.md-accent(
             ng-click='vm.recTX.newID()'
             style='margin-left: 0;'
           ) New Payment ID

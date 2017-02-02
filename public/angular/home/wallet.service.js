@@ -68,7 +68,7 @@ angular.module('angularModule')
       }],
       mixin: parseInt(tx.mixin),
       payment_id: tx.paymentID,
-      get_tx_key: true // wtf is this?!
+      get_tx_key: true
     });
   }
 
