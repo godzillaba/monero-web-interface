@@ -16,8 +16,8 @@ code {
 
 #receive-params {
   position: relative;
-  padding-left: 220px;
-  min-height: 220px;
+  padding-left: 180px;
+  min-height: 180px;
 }
 #receive-qr {
   position: absolute;
@@ -26,7 +26,7 @@ code {
 #receive-qr a {
   position: absolute;
   top: 0; left: 0;
-  width: 200px; height: 200px;
+  width: 160px; height: 160px;
 }
 
 @media (max-width: 960px) {
@@ -38,11 +38,26 @@ code {
     position: inherit;
   }
   #receive-qr > div {
-    width: 200px;
+    width: 160px;
     margin: auto;
   }
 }
 
+.mz {
+  margin: 0;
+}
+
+.kv-table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.kv-table td {
+  padding: 3px 0;
+}
+.kv-table th.k-col {
+  width: 100px;
+}
 
 .tx-entry {
   border-left: 3px solid transparent;

@@ -15,6 +15,7 @@ function mtExit(error, stdout, stderr) {
   }
 }
 
+// TODO: make sure not already listening
 var mtc = config.moneroTools;
 moneroTools.startDaemon(mtExit)
   .then(() => {
@@ -26,28 +27,35 @@ moneroTools.startDaemon(mtExit)
   });
 
 
+// generate new keys
 if (!KeyPair.getSync('rootCA') || !KeyPair.getSync('server')) {
-  // generate new keys
+  var rCaCn = config.sslKeys.rootCA.commonName;
+  var srvCn = config.sslKeys.server.commonName;
+  if (!rCaCn || !srvCn) {
+    console.error('Please define sslKeys.rootCA.commonName and sslKeys.server.commonName in config/default.json');
+    process.exit();
+  }
+
   KeyPair.createSync('rootCA', {
     selfSigned: true,
-    commonName: config.sslKeys.rootCA.commonName
+    commonName: rCaCn
   });
   KeyPair.createSync('server', {
     serviceKey: KeyPair.getSync('rootCA').key,
     serviceCertificate: KeyPair.getSync('rootCA').cert,
-    commonName: config.sslKeys.server.commonName
+    commonName: srvCn
   });
 
   fs.writeFileSync('./data/ca.pem', KeyPair.getSync('rootCA').cert);
 }
 
-morgan.token('remote-user', (req, res) => {
-  var s = req.socket.getPeerCertificate().subject;
-  if (s)
-    return s.CN;
-  else
-    return null;
-});
+var options = {
+  key: KeyPair.getSync('server').key,
+  cert: KeyPair.getSync('server').cert,
+  ca: KeyPair.getSync('rootCA').cert,
+  requestCert: true,
+  rejectUnauthorized: false
+}
 
 app
   .set('view engine', 'pug')
@@ -57,14 +65,13 @@ app
   .use(require('body-parser').json())
   .use(require('./controllers'));
 
-
-var options = {
-  key: KeyPair.getSync('server').key,
-  cert: KeyPair.getSync('server').cert,
-  ca: KeyPair.getSync('rootCA').cert,
-  requestCert: true,
-  rejectUnauthorized: false
-}
+morgan.token('remote-user', (req, res) => {
+  var s = req.socket.getPeerCertificate().subject;
+  if (s)
+    return s.CN;
+  else
+    return null;
+});
 
 var wsc = config.webServer;
 https.createServer(options, app)

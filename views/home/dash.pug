@@ -42,9 +42,32 @@ div(ng-controller='homeCtrl as vm' ng-cloak)
       md-dialog(layout-padding style='word-wrap: break-word;')
         md-dialog-content
           h1 Transaction Information
-          p Type: {{ vm.visTX.txType }}
-          p Date: {{ vm.visTX.timestamp*1000 | date:'MMMM dd yyyy - hh:mm a' }}
-          p Amount: {{ vm.visTX.totalAmount | toXmrFiat:false }}
+          table.kv-table
+            tr
+              th.k-col
+              th.v-col
+            tr
+              td Type:
+              td {{ vm.visTX.txType.toUpperCase() }}
+            tr
+              td Date:
+              td {{ vm.visTX.timestamp*1000 | date:'MMMM dd yyyy - hh:mm a' }}
+            tr
+              td Height:
+              td {{ vm.visTX.height }}
+            tr
+              td Amount:
+              td {{ vm.visTX.totalAmount | toXmrFiat:false }}
+            tr
+              td Payment ID:
+              td #[code {{ vm.visTX.paymentId == 0 ? 'none' : vm.visTX.paymentId }}]
+            tr
+              td TXID:
+              td #[code {{ vm.visTX.txid }}]
+            tr(ng-show='vm.visTX.fee')
+              td Fee:
+              td {{ vm.visTX.fee | toXmrFiat:false }}
+
           md-input-container.md-block(
             md-no-float='true'
             style='margin-bottom: 0;'
@@ -57,12 +80,6 @@ div(ng-controller='homeCtrl as vm' ng-cloak)
               type='text'
               rows='1'
             )
-          p(style='margin-top: 0;') Payment ID: #[code {{ vm.visTX.paymentId == 0 ? 'none' : vm.visTX.paymentId }}]
-          p TX ID: #[code {{ vm.visTX.txid }}]
-          div(ng-show='vm.visTX.fee')
-            p Fee: {{ vm.visTX.fee | toXmrFiat:false }}
-
-
 
         md-dialog-actions
           md-button.md-primary(ng-click='vm.hideDialog();') Close
@@ -122,12 +139,12 @@ div(ng-controller='homeCtrl as vm' ng-cloak)
     #confirm-send-dialog.md-dialog-container
       md-dialog(layout-padding)
         md-dialog-content
-          h2 Confirm Send
-          h4 Amount: {{ vm.sendTX.amount | toXmrFiat:vm.fp:undefined:false }} &asymp; {{ vm.sendTX.amount | toXmrFiat:!vm.fp:undefined:false }}
-          p.md-caption Address: {{ vm.sendTX.address }}
-          p.md-caption Payment ID:
-            span(ng-show='vm.sendTX.address.length > 95')  (Integrated Address)
-            span(ng-hide='vm.sendTX.address.length > 95')  {{ vm.sendTX.paymentId || 'none' }}
+          h1 Confirm Send
+          h3 {{ vm.sendTX.amount | toXmrFiat:vm.fp:undefined:false }} &asymp; {{ vm.sendTX.amount | toXmrFiat:!vm.fp:undefined:false }}
+          p.md-caption Address: #[code {{ vm.sendTX.address }}]
+          p.md-caption Payment ID:&nbsp;
+            code(ng-show='vm.sendTX.address.length > 95') (Integrated Address)
+            code(ng-hide='vm.sendTX.address.length > 95') {{ vm.sendTX.paymentId || 'none' }}
           p.md-caption Mixin: {{ vm.sendTX.mixin }}
         md-dialog-actions
           md-button.md-primary(ng-click='vm.showDialog("#send-dialog");') Back
@@ -145,7 +162,7 @@ div(ng-controller='homeCtrl as vm' ng-cloak)
               div
                 qrcode(
                   data='{{ vm.recTX.uri }}'
-                  size='200'
+                  size='160'
                   version='13'
                 )
                 a(href='{{ vm.recTX.uri || "#" }}')
@@ -183,12 +200,12 @@ div(ng-controller='homeCtrl as vm' ng-cloak)
             md-checkbox(ng-model='vm.showIntegrated' ng-change='vm.updateRecAddr();') Integrated Address
 
 
-          p.md-caption(ng-show='vm.showIntegrated') Address: #[code {{ vm.recTX.integAddr }}]
+          p.md-caption.mz(ng-show='vm.showIntegrated') Address: #[code {{ vm.recTX.integAddr }}]
             copy-button(text='{{vm.recTX.integAddr}}')
-          p.md-caption(ng-hide='vm.showIntegrated') Address: #[code {{ vm.wallet.getAddress() }}]
+          p.md-caption.mz(ng-hide='vm.showIntegrated') Address: #[code {{ vm.wallet.getAddress() }}]
             copy-button(text='{{vm.wallet.getAddress()}}')
 
-          p.md-caption Payment ID: #[code {{ vm.recTX.paymentId }}]
+          p.md-caption.mz Payment ID: #[code {{ vm.recTX.paymentId }}]
             copy-button(text='{{vm.recTX.paymentId}}')
 
           md-button.md-accent(
