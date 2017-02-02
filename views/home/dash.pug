@@ -24,28 +24,28 @@ div(ng-controller='homeCtrl as vm' ng-cloak)
     md-list-item.md-3-line.tx-entry(
       ng-repeat='tx in vm.wallet.getTransfers() | orderBy:"-timestamp"'
       ng-init='rate = vm.pricesDB.getPrice(tx.timestamp)'
-      ng-class="'tx-'+tx.tx_type"
+      ng-class="'tx-'+tx.txType"
       ng-click='vm.showTXInfo(tx);'
     )
 
       .md-list-item-text
         h3 {{tx.timestamp*1000 | date:'MMM d yyyy - hh:mm a'}}
-        p(ng-if='tx.payment_id != 0') payment_id: {{ tx.payment_id }}
+        p(ng-if='tx.paymentId != 0') paymentId: {{ tx.paymentId }}
         p(hide show-gt-sm) txid: {{ tx.txid }}
 
       .md-list-item-text(style='text-align: right;')
-        h3.tx-amt {{ tx.total_amount | toXmrFiat:vm.fp }}
+        h3.tx-amt {{ tx.totalAmount | toXmrFiat:vm.fp }}
         //- p(ng-if='tx.fee') fee: {{ tx.fee | toXmrFiat:vm.fp }}
-        p {{ tx.total_amount | toXmrFiat:!vm.fp }}
+        p {{ tx.totalAmount | toXmrFiat:!vm.fp }}
 
   div(style='visibility: hidden;')
     #tx-info-dialog.md-dialog-container
       md-dialog(layout-padding style='word-wrap: break-word;')
         md-dialog-content
           h1 Transaction Information
-          p Type: {{ vm.visTX.tx_type }}
+          p Type: {{ vm.visTX.txType }}
           p Date: {{ vm.visTX.timestamp*1000 | date:'MMMM dd yyyy - hh:mm a' }}
-          p Amount: {{ vm.visTX.total_amount | toXmrFiat:false }}
+          p Amount: {{ vm.visTX.totalAmount | toXmrFiat:false }}
           md-input-container.md-block(
             md-no-float='true'
             style='margin-bottom: 0;'
@@ -58,7 +58,7 @@ div(ng-controller='homeCtrl as vm' ng-cloak)
               type='text'
               rows='1'
             )
-          p(style='margin-top: 0;') Payment ID: #[code {{ vm.visTX.payment_id == 0 ? 'none' : vm.visTX.payment_id }}]
+          p(style='margin-top: 0;') Payment ID: #[code {{ vm.visTX.paymentId == 0 ? 'none' : vm.visTX.paymentId }}]
           p TX ID: #[code {{ vm.visTX.txid }}]
           div(ng-show='vm.visTX.fee')
             p Fee: {{ vm.visTX.fee | toXmrFiat:false }}
@@ -85,7 +85,7 @@ div(ng-controller='homeCtrl as vm' ng-cloak)
               md-input-container(flex='75')
                 label Payment ID
                 input(
-                  ng-model='vm.sendTX.paymentID'
+                  ng-model='vm.sendTX.paymentId'
                   ng-disabled='vm.sendTX.address.length > 95'
                   type='text'
                 )
@@ -128,7 +128,7 @@ div(ng-controller='homeCtrl as vm' ng-cloak)
           p.md-caption Address: {{ vm.sendTX.address }}
           p.md-caption Payment ID:
             span(ng-show='vm.sendTX.address.length > 95')  (Integrated Address)
-            span(ng-hide='vm.sendTX.address.length > 95')  {{ vm.sendTX.paymentID || 'none' }}
+            span(ng-hide='vm.sendTX.address.length > 95')  {{ vm.sendTX.paymentId || 'none' }}
           p.md-caption Mixin: {{ vm.sendTX.mixin }}
         md-dialog-actions
           md-button.md-primary(ng-click='vm.showDialog("#send-dialog");') Back
@@ -190,8 +190,8 @@ div(ng-controller='homeCtrl as vm' ng-cloak)
           p.md-caption(ng-hide='vm.showIntegrated') Address: #[code {{ vm.wallet.getAddress() }}]
             copy-button(text='{{vm.wallet.getAddress()}}')
 
-          p.md-caption Payment ID: #[code {{ vm.recTX.paymentID }}]
-            copy-button(text='{{vm.recTX.paymentID}}')
+          p.md-caption Payment ID: #[code {{ vm.recTX.paymentId }}]
+            copy-button(text='{{vm.recTX.paymentId}}')
 
           md-button.md-accent(
             ng-click='vm.recTX.newID()'

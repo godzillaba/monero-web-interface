@@ -1,7 +1,7 @@
 angular.module('angularModule')
-.service('modifyHttpPromise', function() {
+.service('modifyHttpPromise', ['$q', function($q) {
   return function(httpPromise) {
-    return new Promise(function(resolve, reject) {
+    return $q(function(resolve, reject) {
       httpPromise.then((res) => {
         if (res.data.error)
           reject(res.data);
@@ -11,4 +11,4 @@ angular.module('angularModule')
       });
     });
   }
-});
+}]);

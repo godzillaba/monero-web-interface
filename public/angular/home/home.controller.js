@@ -14,8 +14,8 @@ function homeController(_pricesDB, _wallet, currencyHelper, $scope, $mdDialog, $
   vm.pricesDB = _pricesDB;
   vm.wallet = _wallet;
 
-  vm.pricesDB.loadTicker().then($scope.$apply);
-  vm.wallet.refresh().then($scope.$apply);
+  vm.pricesDB.loadTicker();
+  vm.wallet.refresh();
 
   vm.showIntegrated = true;
   vm.recTX = new IncomingTransaction();
@@ -31,7 +31,7 @@ function homeController(_pricesDB, _wallet, currencyHelper, $scope, $mdDialog, $
 
   function Transaction() {
     this.address = '';
-    this.paymentID = '';
+    this.paymentId = '';
     this.amountFiat = '';
     this.amount = '';
     this.atomicAmount = 0;
@@ -64,8 +64,7 @@ function homeController(_pricesDB, _wallet, currencyHelper, $scope, $mdDialog, $
           return vm.wallet.splitIntegratedAddress(this.integAddr);
         })
         .then((data) => {
-          this.paymentID = data.result.payment_id;
-          $scope.$apply();
+          this.paymentId = data.result.payment_id;
           return this.makeUri();
         });
     }
@@ -74,7 +73,6 @@ function homeController(_pricesDB, _wallet, currencyHelper, $scope, $mdDialog, $
       vm.wallet.makeUri(this)
         .then((data) => {
           this.uri = data.result.uri;
-          $scope.$apply();
         });
     }
 
@@ -88,17 +86,19 @@ function homeController(_pricesDB, _wallet, currencyHelper, $scope, $mdDialog, $
   }
 
   function sendFunds() { // TODO: show tx_key to user
-    vm.wallet.transfer(vm.sendTX).then((data) => {
-      hideDialog();
-      showToast('sent funds! - tx_key: ' + data.result.tx_key);
-      vm.sendTX = new Transaction();
-      vm.wallet.refresh();
-    }).catch((data) => {
-      var err = data.error;
-      console.error(err);
-      showToast('Ecode ' + err.code + ': ' + err.message);
-      showDialog('#send-dialog');
-    });
+    vm.wallet.transfer(vm.sendTX)
+      .then((data) => {
+        hideDialog();
+        showToast('sent funds! - tx_key: ' + data.result.tx_key);
+        vm.sendTX = new Transaction();
+        return vm.wallet.refresh();
+      })
+      .catch((data) => {
+        var err = data.error;
+        console.error(err);
+        showToast('Ecode ' + err.code + ': ' + err.message);
+        showDialog('#send-dialog');
+      });
   }
 
 

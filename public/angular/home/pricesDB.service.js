@@ -22,12 +22,11 @@ angular.module('angularModule')
   }
 
   function loadTicker() {
-    return new Promise((resolve, reject) => {
-      poloniex.returnTicker().then((data) => {
+    return poloniex.returnTicker()
+      .then((data) => {
         ticker = data;
-        resolve(data);
-      }).catch(reject);
-    });
+        return data;
+      });
   }
   function getCurrentPrice() {
     return ticker[pair].last;

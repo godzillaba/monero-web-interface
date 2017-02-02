@@ -1,5 +1,5 @@
 angular.module('angularModule')
-.service('wallet', ['moneroRpc', function(moneroRpc) {
+.service('wallet', ['moneroRpc', '$q', function(moneroRpc, $q) {
   var address;
   var balance;
   var unlockedBalance;
@@ -10,12 +10,10 @@ angular.module('angularModule')
   }
 
   function loadAddress() {
-    return new Promise(function(resolve, reject) {
-      walletRpc('getaddress').then((data) => {
+    return walletRpc('getaddress').then((data) => {
         address = data.result.address;
-        resolve(data);
-      }).catch(reject);
-    });
+        return data;
+      });
   }
 
 
@@ -29,36 +27,49 @@ angular.module('angularModule')
   }
 
   function loadBalance() {
-    return new Promise(function(resolve, reject) {
-      walletRpc('getbalance').then((data) => {
+    return walletRpc('getbalance')
+      .then((data) => {
         balance = data.result.balance;
         unlockedBalance = data.result.unlocked_balance;
-        resolve(data);
-      }).catch(reject);
-    });
+        return data;
+      });
   }
   function loadTransfers() {
     transfers = [];
-    return new Promise(function(resolve, reject) {
-      walletRpc('get_transfers', {
+
+    function snakeToCamel(s) {
+      return s.replace(/_\w/g, function(m) {
+        return m[1].toUpperCase();
+      });
+    }
+
+    function camelizeTx(tx) {
+      var ctx = {};
+      for (var attr in tx) {
+        ctx[snakeToCamel(attr)] = tx[attr];
+      }
+      return ctx;
+    }
+
+    return walletRpc('get_transfers', {
         in: true,
         out: true,
         pending: true,
         failed: true,
         pool: false // wt is pool?
-      }).then((data) => {
-        var r = data.result;
-        for (var k in r) {
-          for (var i=0; i < r[k].length; i++) {
-            var t = r[k][i];
-            t.tx_type = k;
-            t.total_amount = t.amount + (t.fee || 0);
-            transfers.push(t);
+      })
+      .then((data) => {
+        var result = data.result;
+        for (var type in result) {
+          for (var i=0; i < result[type].length; i++) {
+            var tx = camelizeTx(result[type][i]);
+            tx.txType = type;
+            tx.totalAmount = tx.amount + (tx.fee || 0);
+            transfers.push(tx);
           }
         }
-        resolve(data);
-      }).catch(reject);
-    });
+        return data;
+      });
   }
   function transfer(tx) {
     return walletRpc('transfer', {
@@ -67,7 +78,7 @@ angular.module('angularModule')
         address: tx.address
       }],
       mixin: parseInt(tx.mixin),
-      payment_id: tx.paymentID,
+      payment_id: tx.paymentId,
       get_tx_key: true
     });
   }
@@ -90,7 +101,7 @@ angular.module('angularModule')
   }
 
   function refresh() {
-    return Promise.all([
+    return $q.all([
       loadTransfers(),
       loadAddress(),
       loadBalance()

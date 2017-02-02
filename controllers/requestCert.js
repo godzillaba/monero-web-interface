@@ -19,6 +19,7 @@ function newCertCodes() {
   certPass = randString(8);
   console.log('\n\nCERTIFICATE REQUEST CODE: ' + certReqCode);
   console.log('CERTIFICATE PASSWORD: ' + certPass);
+  console.log('\n');
 }
 function clearCertCodes() {
   certReqCode = certPass = '';
