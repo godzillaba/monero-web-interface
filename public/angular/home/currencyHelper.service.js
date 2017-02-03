@@ -14,15 +14,12 @@ angular.module('angularModule')
   }
 
   function xmrToFiat(amt, ts=undefined) {
-    var price;
-    if (ts)
-      price = pdb.getPrice(ts);
-    else
-      price = pdb.getCurrentPrice();
+    var price = ts ? pdb.getPrice(ts) : pdb.getCurrentPrice();
     return amt*price;
   }
   function fiatToXmr(amt, ts=undefined) {
-    return 1/xmrToFiat(amt, ts);
+    var price = ts ? pdb.getPrice(ts) : pdb.getCurrentPrice();
+    return amt/price;
   }
 
   return {

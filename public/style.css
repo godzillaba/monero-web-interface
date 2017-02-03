@@ -1,4 +1,4 @@
-
+/* TODO: LESS */
 .main-container {
   display: flex;
   height: 100%;
@@ -68,6 +68,9 @@ code {
 .tx-entry.tx-in .tx-amt {
   color: #00c853;
 }
+.tx-entry.tx-pool {
+  border-left-color: #b9f6ca;
+}
 .tx-entry.tx-out {
   border-left-color: #ff5252;
 }
@@ -75,5 +78,5 @@ code {
   color: #ff5252;
 }
 .tx-entry.tx-pending {
-  border-left-color: lightgray;
+  border-left-color: #ff8a80;
 }

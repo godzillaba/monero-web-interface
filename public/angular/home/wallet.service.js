@@ -35,8 +35,6 @@ angular.module('angularModule')
       });
   }
   function loadTransfers() {
-    transfers = [];
-
     function snakeToCamel(s) {
       return s.replace(/_\w/g, function(m) {
         return m[1].toUpperCase();
@@ -56,9 +54,10 @@ angular.module('angularModule')
         out: true,
         pending: true,
         failed: true,
-        pool: false // wt is pool?
+        pool: true
       })
       .then((data) => {
+        transfers = [];
         var result = data.result;
         for (var type in result) {
           for (var i=0; i < result[type].length; i++) {

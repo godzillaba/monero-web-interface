@@ -11,7 +11,11 @@ div(ng-controller='homeCtrl as vm' ng-cloak)
       md-button.md-accent.md-raised(ng-click='vm.showDialog("#send-dialog");') Send
       md-button.md-accent.md-raised(ng-click='vm.showDialog("#receive-dialog");') Receive
 
-    div(ng-click='vm.fp = !vm.fp' style='cursor: pointer;' flex-order='0')
+    div(
+      ng-click='vm.fp = !vm.fp'
+      style='cursor: pointer; outline: none;'
+      flex-order='0'
+    )
       span.md-headline
         | {{ vm.wallet.getBalance() | toXmrFiat:vm.fp }}
         |  &asymp; {{ vm.wallet.getBalance() | toXmrFiat:!vm.fp }}
@@ -43,9 +47,7 @@ div(ng-controller='homeCtrl as vm' ng-cloak)
         md-dialog-content
           h1 Transaction Information
           table.kv-table
-            tr
-              th.k-col
-              th.v-col
+            tr #[th.k-col] #[th.v-col]
             tr
               td Type:
               td {{ vm.visTX.txType.toUpperCase() }}
@@ -53,11 +55,12 @@ div(ng-controller='homeCtrl as vm' ng-cloak)
               td Date:
               td {{ vm.visTX.timestamp*1000 | date:'MMMM dd yyyy - hh:mm a' }}
             tr
-              td Height:
-              td {{ vm.visTX.height }}
-            tr
               td Amount:
               td {{ vm.visTX.totalAmount | toXmrFiat:false }}
+            tr(ng-show='vm.visTX.destinations')
+              td Destinations:
+              td
+                code(ng-repeat='d in vm.visTX.destinations') {{ d.address }}#[br]
             tr
               td Payment ID:
               td #[code {{ vm.visTX.paymentId == 0 ? 'none' : vm.visTX.paymentId }}]
@@ -67,6 +70,9 @@ div(ng-controller='homeCtrl as vm' ng-cloak)
             tr(ng-show='vm.visTX.fee')
               td Fee:
               td {{ vm.visTX.fee | toXmrFiat:false }}
+            tr
+              td Height:
+              td {{ vm.visTX.height }}
 
           md-input-container.md-block(
             md-no-float='true'

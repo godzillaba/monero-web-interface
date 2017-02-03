@@ -4,9 +4,10 @@ angular.module('angularModule')
   'wallet',
   'currencyHelper',
   '$scope',
+  '$interval',
   '$mdDialog',
   '$mdToast',
-function homeController(_pricesDB, _wallet, currencyHelper, $scope, $mdDialog, $mdToast) {
+function homeController(_pricesDB, _wallet, currencyHelper, $scope, $interval, $mdDialog, $mdToast) {
   var vm = this;
   window.vm = vm;
   vm.debounce = 500;
@@ -16,6 +17,11 @@ function homeController(_pricesDB, _wallet, currencyHelper, $scope, $mdDialog, $
 
   vm.pricesDB.loadTicker();
   vm.wallet.refresh();
+
+  $interval(() => {
+    vm.wallet.refresh();
+    vm.pricesDB.loadTicker();
+  }, 30000);
 
   vm.showIntegrated = true;
   vm.recTX = new IncomingTransaction();

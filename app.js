@@ -10,8 +10,10 @@ var app = express();
 
 function mtExit(error, stdout, stderr) {
   if (error) {
-    console.error('\n' + error.cmd + '\n  Failed, exit code: ' + error.code);
-    process.exit();
+    console.error('\n' + error.cmd + '\n  Command exited with status: ' + error.code);
+    if (error.code === 127)
+      console.error('  make sure that monero tools are properly installed');
+    process.exit(1);
   }
 }
 
@@ -33,7 +35,7 @@ if (!KeyPair.getSync('rootCA') || !KeyPair.getSync('server')) {
   var srvCn = config.sslKeys.server.commonName;
   if (!rCaCn || !srvCn) {
     console.error('Please define sslKeys.rootCA.commonName and sslKeys.server.commonName in config/default.json');
-    process.exit();
+    process.exit(1);
   }
 
   KeyPair.createSync('rootCA', {
@@ -66,9 +68,9 @@ app
   .use(require('./controllers'));
 
 morgan.token('remote-user', (req, res) => {
-  var s = req.socket.getPeerCertificate().subject;
-  if (s)
-    return s.CN;
+  var s = req.socket.getPeerCertificate();
+  if (s && s.subject)
+    return s.subject.CN;
   else
     return null;
 });
@@ -78,7 +80,7 @@ https.createServer(options, app)
   .listen(wsc.port, wsc.host, (err) => {
     if (err) {
       console.error(err);
-      process.exit();
+      process.exit(1);
     }
     console.log('express listening on ' + wsc.host + ':' + wsc.port);
   });
