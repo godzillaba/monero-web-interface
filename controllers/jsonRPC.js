@@ -1,31 +1,50 @@
-var express = require('express');
-var config = require('config');
-var request = require('request');
-var auth = require('../middlewares/auth');
-var router = express.Router();
+const express = require('express');
+const moneroRpc = require('./moneroRpc');
+const rpcMethods = require('./rpcMethods').module;
+const auth = require('../middlewares/auth');
+const router = express.Router();
 
-function forwardRPC(req, res, destPort) {
-  var opts = {
-    headers: {
-      'content-type': 'application/json'
-    },
-    url: 'http://localhost:' + destPort + '/json_rpc',
-    body: JSON.stringify(req.body)
+function forwardRpc(req, res, service) {
+  moneroRpc[service](req)
+    .then((body) => {
+      res.send(body);
+    }); // catch this
+}
+
+function handleRpc(req, res) {
+  // TODO: request validation
+  var method = req.body.method;
+  if (method in rpcMethods) {
+    rpcMethods[method](req.body)
+      .then((result) => {
+        result.jsonrpc = "2.0";
+        result.id = req.body.id;
+        res.send(result);
+      });
   }
-  request.post(opts, function(error, res2, body) {
-    res.send(body);
-  });
+  else {
+    res.send({
+      jsonrpc: "2.0",
+      id: req.body.id,
+      error: {
+        code: -32601,
+        message: 'Method not found'
+      }
+    });
+  }
+
 }
 
 router
   .all('/*', auth, (req, res, next) => {
     next();
   })
+  .post('/', handleRpc)
   .post('/daemon', (req, res) => {
-    forwardRPC(req, res, config.moneroTools.daemonPort);
+    forwardRpc(req, res, 'daemon');
   })
   .post('/wallet', (req, res) => {
-    forwardRPC(req, res, config.moneroTools.walletPort);
+    forwardRpc(req, res, 'wallet');
   });
 
 module.exports = router;
