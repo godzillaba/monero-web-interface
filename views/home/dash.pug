@@ -101,14 +101,14 @@ div(ng-controller='homeCtrl as vm' ng-cloak)
 
               md-input-container(flex='100')
                 label Destination Address
-                input(ng-model='vm.sendTX.address' type='text' required)
+                input(ng-model='vm.sendTX.destination' type='text' required)
 
 
               md-input-container(flex='75')
                 label Payment ID
                 input(
                   ng-model='vm.sendTX.paymentId'
-                  ng-disabled='vm.sendTX.address.length > 95'
+                  ng-disabled='vm.sendTX.destination.length > 95'
                   type='text'
                 )
 
@@ -147,7 +147,13 @@ div(ng-controller='homeCtrl as vm' ng-cloak)
         md-dialog-content
           h1 Confirm Send
           h3 {{ vm.sendTX.amount | toXmrFiat:vm.fp:undefined:false }} &asymp; {{ vm.sendTX.amount | toXmrFiat:!vm.fp:undefined:false }}
-          p.md-caption Address: #[code {{ vm.sendTX.address }}]
+
+          p.md-caption Destination: #[code {{vm.sendTX.destination }}]
+
+          div(ng-show='vm.sendTX.usingAlias')
+            h4 THE ADDRESS WAS NOT VERIFIED USING DNSSEC!
+            p.md-caption Address: #[code {{ vm.sendTX.address }}]
+
           p.md-caption Payment ID:&nbsp;
             code(ng-show='vm.sendTX.address.length > 95') (Integrated Address)
             code(ng-hide='vm.sendTX.address.length > 95') {{ vm.sendTX.paymentId || 'none' }}
@@ -208,8 +214,8 @@ div(ng-controller='homeCtrl as vm' ng-cloak)
 
           p.md-caption.mz(ng-show='vm.showIntegrated') Address: #[code {{ vm.recTX.integAddr }}]
             copy-button(text='{{vm.recTX.integAddr}}')
-          p.md-caption.mz(ng-hide='vm.showIntegrated') Address: #[code {{ vm.wallet.getAddress() }}]
-            copy-button(text='{{vm.wallet.getAddress()}}')
+          p.md-caption.mz(ng-hide='vm.showIntegrated') Address: #[code {{ vm.recTX.address }}]
+            copy-button(text='{{vm.recTX.address}}')
 
           p.md-caption.mz Payment ID: #[code {{ vm.recTX.paymentId }}]
             copy-button(text='{{vm.recTX.paymentId}}')

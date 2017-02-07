@@ -3,11 +3,13 @@ angular.module('angularModule')
   'pricesDB',
   'wallet',
   'currencyHelper',
+  'openAlias',
   '$scope',
+  '$q',
   '$interval',
   '$mdDialog',
   '$mdToast',
-function homeController(_pricesDB, _wallet, currencyHelper, $scope, $interval, $mdDialog, $mdToast) {
+function homeController(_pricesDB, _wallet, currencyHelper, openAlias, $scope, $q, $interval, $mdDialog, $mdToast) {
   var vm = this;
   window.vm = vm;
   vm.debounce = 500;
@@ -36,8 +38,6 @@ function homeController(_pricesDB, _wallet, currencyHelper, $scope, $interval, $
   vm.showTXInfo = showTXInfo;
 
   function Transaction() {
-    this.address = '';
-    this.paymentId = '';
     this.amountFiat = '';
     this.amount = '';
     this.atomicAmount = 0;
@@ -53,11 +53,38 @@ function homeController(_pricesDB, _wallet, currencyHelper, $scope, $interval, $
 
   function OutgoingTransaction() {
     Transaction.call(this);
+    this.destination = '';
+    this.paymentId = '';
     this.mixin = 3;
+    this.usingAlias = false;
+    this.address = '';
+
+    this.loadAddress = function() {
+      this.usingAlias = false;
+      if (vm.sendTX.destination.indexOf('.') != -1) {
+        return openAlias(this.destination)
+          .then((data) => {
+            console.log(data);
+            this.address = data.result.recipient_address;
+            this.usingAlias = Boolean(this.address);
+            if (this.usingAlias) return $q.resolve();
+            else return $q.reject();
+          })
+          .catch((data) => {
+            return $q.reject();
+          });
+      }
+      else {
+        this.address = this.destination;
+        return $q.resolve();
+      }
+    }
   }
 
   function IncomingTransaction() {
     Transaction.call(this);
+    this.address = '';
+    this.paymentId = '';
     this.integAddr = '';
     this.name = '';
     this.description = '';
@@ -70,6 +97,7 @@ function homeController(_pricesDB, _wallet, currencyHelper, $scope, $interval, $
           return vm.wallet.splitIntegratedAddress(this.integAddr);
         })
         .then((data) => {
+          this.address = data.result.standard_address;
           this.paymentId = data.result.payment_id;
           return this.makeUri();
         });
@@ -87,8 +115,15 @@ function homeController(_pricesDB, _wallet, currencyHelper, $scope, $interval, $
 
 
   function confirmSend() {
-    if (vm.sendForm.$valid)
-      showDialog('#confirm-send-dialog', false);
+    if (vm.sendForm.$valid) {
+      vm.sendTX.loadAddress()
+        .then(() => {
+          showDialog('#confirm-send-dialog', false);
+        })
+        .catch(() => {
+          showToast('Unable to resolve alias: ' + vm.sendTX.destination);
+        });
+    }
   }
 
   function sendFunds() { // TODO: show tx_key to user
