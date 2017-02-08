@@ -1,6 +1,7 @@
 const nativeDns = require('native-dns');
 const dns = require('dns');
 
+// takes array of record objects and returns 2d array
 function formatResponse(data) {
   var result = [];
   for (var i = 0; i < data.length; i++) {
@@ -9,18 +10,20 @@ function formatResponse(data) {
   return result;
 }
 
-// DNSSEC?
-
+// returns 2d array
 function defaultLookup(name) {
   return new Promise(function(resolve, reject) {
-    // use defaults
     dns.resolve(name, 'TXT', (err, addrs) => {
-      if (err) reject(err);
-      else resolve(addrs);
+      // default dns does throws NOTFOUND error whereas native-dns does not
+      if (err && err.code != 'ENOTFOUND')
+        reject(err);
+      else
+        resolve(addrs || []);
     });
   });
 }
 
+// returns array of record objects
 function customLookup(name, server) {
   return new Promise(function(resolve, reject) {
     // use custom server
@@ -38,7 +41,7 @@ function customLookup(name, server) {
     });
     req.on('message', (err, res) => {
       if (err) reject(err);
-      else resolve(formatResponse(res.answer));
+      else resolve(res.answer);
     });
     req.send();
   });
@@ -49,6 +52,9 @@ module.exports = function(name, server) {
     return defaultLookup(name);
   }
   else {
-    return customLookup(name, server);
+    return customLookup(name, server)
+      .then((data) => {
+        return formatResponse(data);
+      });
   }
 }
