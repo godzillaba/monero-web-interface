@@ -15,7 +15,7 @@ function forwardRPC(req, destPort, callback) {
         resolve(body);
       }
       else {
-        reject(error || response);
+        reject(error || response); // TODO: return error object not response
       }
     });
   });

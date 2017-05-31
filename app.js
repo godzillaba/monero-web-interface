@@ -1,11 +1,11 @@
-var fs = require('fs');
-var morgan = require('morgan');
-var express = require('express');
-var https = require('https');
-var config = require('config');
-var KeyPair = require('./models/sslKeyPair');
-var moneroTools = require('./helpers/moneroTools');
-var app = express();
+const fs = require('fs');
+const morgan = require('morgan');
+const express = require('express');
+const https = require('https');
+const config = require('config');
+const KeyPair = require('./models/sslKeyPair');
+const moneroTools = require('./helpers/moneroTools');
+const app = express();
 
 
 function mtExit(error, stdout, stderr) {
@@ -17,20 +17,7 @@ function mtExit(error, stdout, stderr) {
   }
 }
 
-// TODO: make sure not already listening
-var mtc = config.moneroTools;
-moneroTools.startDaemon(mtExit)
-  .then(() => {
-    console.log('monerod listening on 127.0.0.1:' + mtc.daemonPort);
-    return moneroTools.startWallet(mtExit);
-  })
-  .then(() => {
-    console.log('monero-wallet-rpc listening on 127.0.0.1:' + mtc.walletPort);
-  });
-
-
-// generate new keys
-if (!KeyPair.getSync('rootCA') || !KeyPair.getSync('server')) {
+function generateKeys() {
   var rCaCn = config.sslKeys.rootCA.commonName;
   var srvCn = config.sslKeys.server.commonName;
   if (!rCaCn || !srvCn) {
@@ -56,6 +43,23 @@ if (!KeyPair.getSync('rootCA') || !KeyPair.getSync('server')) {
   sp.save();
 
   fs.writeFileSync('./data/ca.pem', rcap.get('cert'));
+}
+
+// TODO: make sure not already listening
+var mtc = config.moneroTools;
+moneroTools.startDaemon(mtExit)
+  .then(() => {
+    console.log('monerod listening on 127.0.0.1:' + mtc.daemonPort);
+    return moneroTools.startWallet(mtExit);
+  })
+  .then(() => {
+    console.log('monero-wallet-rpc listening on 127.0.0.1:' + mtc.walletPort);
+  });
+
+
+// generate new keys
+if (!KeyPair.getSync('rootCA') || !KeyPair.getSync('server')) {
+  generateKeys();
 }
 
 var sp = KeyPair.getSync('server');

@@ -1,11 +1,6 @@
-var fs = require('fs');
-var createCertSync = require('../helpers/createCertSync');
+const fs = require('fs');
+const createCertSync = require('../helpers/createCertSync');
 const KEYFILE = '../data/sslKeys.json';
-
-/**
- * SSL key pair data model
- * @module models/SslKeyPair
- */
 
 module.exports = SslKeyPair;
 
@@ -43,29 +38,3 @@ function writeKeys(obj) {
 function readKeys() {
   return require(KEYFILE);
 }
-
-
-//
-//
-// exports.createSync = createSync;
-// exports.getSync = getSync;
-//
-// /**
-//  * createSync - description
-//  *
-//  * @param  {string} name description
-//  * @param  {string} opts description
-//  * @return {string}      description
-//  * @instance
-//  */
-// function createSync(name, opts) {
-//   var newPair = createCertSync(opts);
-//   var k = readKeys();
-//   k[name] = newPair;
-//   writeKeys(k);
-//   return newPair;
-// }
-//
-// function getSync(name) {
-//   return readKeys()[name];
-// }

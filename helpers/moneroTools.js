@@ -1,8 +1,8 @@
-var exec = require('child_process').exec;
-var util = require('util');
-var portUsed = require('tcp-port-used');
-var config = require('config');
-var mtc = config.moneroTools;
+const exec = require('child_process').exec;
+const util = require('util');
+const portUsed = require('tcp-port-used');
+const config = require('config');
+const mtc = config.moneroTools;
 
 function portPromise(port) {
   return portUsed.waitUntilUsed(port, 200, mtc.startTimeout);

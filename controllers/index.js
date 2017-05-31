@@ -1,7 +1,7 @@
-var express = require('express');
-var auth = require('../middlewares/auth');
-var router = express.Router();
-var path = require('path');
+const express = require('express');
+const auth = require('../middlewares/auth');
+const router = express.Router();
+const path = require('path');
 
 router
   .use('/jsonRPC', require('./jsonRPC'))

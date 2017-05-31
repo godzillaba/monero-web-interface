@@ -1,9 +1,9 @@
-var pem = require('pem');
-var deasync = require('deasync');
-var KeyPair = require('./sslKeyPair');
-var createCertSync = require('../helpers/createCertSync');
+const pem = require('pem');
+const deasync = require('deasync');
+const KeyPair = require('./sslKeyPair');
+const createCertSync = require('../helpers/createCertSync');
 
-var createPkcs12Sync = deasync(pem.createPkcs12);
+const createPkcs12Sync = deasync(pem.createPkcs12);
 
 exports.createSync = function(commonName, password) {
   var rca = KeyPair.getSync('rootCA');

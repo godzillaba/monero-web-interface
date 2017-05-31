@@ -1,6 +1,6 @@
-var express = require('express');
-var router = express.Router();
-var ClientKeyPair = require('../models/sslClientKeyPair');
+const express = require('express');
+const router = express.Router();
+const ClientKeyPair = require('../models/sslClientKeyPair');
 
 function randString(len, numeric=false) {
   var alpha = 'abcdefghijklmnopqrstuvwxyz';

@@ -1,7 +1,7 @@
-var pem = require('pem');
-var deasync = require('deasync');
+const pem = require('pem');
+const deasync = require('deasync');
 
-var createCertificateSync = deasync(pem.createCertificate);
+const createCertificateSync = deasync(pem.createCertificate);
 
 module.exports = function(opts) {
   var p = createCertificateSync(opts);
