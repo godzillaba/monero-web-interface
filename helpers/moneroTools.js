@@ -15,7 +15,8 @@ exports.startDaemon = function(onExit) {
 }
 
 exports.startWallet = function(onExit) {
-  var cmd = 'monero-wallet-rpc --log-file ./log/monero-wallet-rpc.log \
+  var cmd = 'monero-wallet-rpc --disable-rpc-login \
+    --log-file ./log/monero-wallet-rpc.log \
     --rpc-bind-port %s --wallet-file %s --password %s %s';
 
   exec(util.format(

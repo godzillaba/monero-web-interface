@@ -45,7 +45,8 @@ if (!KeyPair.getSync('rootCA') || !KeyPair.getSync('server')) {
   KeyPair.createSync('server', {
     serviceKey: KeyPair.getSync('rootCA').key,
     serviceCertificate: KeyPair.getSync('rootCA').cert,
-    commonName: srvCn
+    commonName: srvCn,
+    altNames: [srvCn]
   });
 
   fs.writeFileSync('./data/ca.pem', KeyPair.getSync('rootCA').cert);

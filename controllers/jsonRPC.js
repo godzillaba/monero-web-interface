@@ -8,7 +8,10 @@ function forwardRpc(req, res, service) {
   moneroRpc[service](req)
     .then((body) => {
       res.send(body);
-    }); // catch this
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 }
 
 function handleRpc(req, res) {

@@ -10,7 +10,8 @@ exports.createSync = function(commonName, password) {
   var client = createCertSync({
     serviceKey: rca.key,
     serviceCertificate: rca.cert,
-    commonName: commonName
+    commonName: commonName,
+    altNames: [commonName]
   });
   return createPkcs12Sync(client.key, client.cert, password);
 }

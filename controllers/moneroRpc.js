@@ -15,7 +15,7 @@ function forwardRPC(req, destPort, callback) {
         resolve(body);
       }
       else {
-        reject(error);
+        reject(error || response);
       }
     });
   });
