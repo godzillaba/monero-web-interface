@@ -38,24 +38,32 @@ if (!KeyPair.getSync('rootCA') || !KeyPair.getSync('server')) {
     process.exit(1);
   }
 
-  KeyPair.createSync('rootCA', {
+  var rcap = new KeyPair({
+    name: 'rootCA',
     selfSigned: true,
     commonName: rCaCn
   });
-  KeyPair.createSync('server', {
-    serviceKey: KeyPair.getSync('rootCA').key,
-    serviceCertificate: KeyPair.getSync('rootCA').cert,
+
+  var sp = new KeyPair({
+    name: 'server',
+    serviceKey: rcap.get('key'),
+    serviceCertificate: rcap.get('cert'),
     commonName: srvCn,
     altNames: [srvCn]
   });
 
-  fs.writeFileSync('./data/ca.pem', KeyPair.getSync('rootCA').cert);
+  rcap.save();
+  sp.save();
+
+  fs.writeFileSync('./data/ca.pem', rcap.get('cert'));
 }
 
+var sp = KeyPair.getSync('server');
+var rcap = KeyPair.getSync('rootCA');
 var options = {
-  key: KeyPair.getSync('server').key,
-  cert: KeyPair.getSync('server').cert,
-  ca: KeyPair.getSync('rootCA').cert,
+  key: sp.get('key'),
+  cert: sp.get('cert'),
+  ca: rcap.get('cert'),
   requestCert: true,
   rejectUnauthorized: false
 }

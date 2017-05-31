@@ -7,11 +7,10 @@ var createPkcs12Sync = deasync(pem.createPkcs12);
 
 exports.createSync = function(commonName, password) {
   var rca = KeyPair.getSync('rootCA');
-  var client = createCertSync({
-    serviceKey: rca.key,
-    serviceCertificate: rca.cert,
-    commonName: commonName,
-    altNames: [commonName]
+  var client = new KeyPair({
+    serviceKey: rca.get('key'),
+    serviceCertificate: rca.get('cert'),
+    commonName: commonName
   });
-  return createPkcs12Sync(client.key, client.cert, password);
+  return createPkcs12Sync(client.get('key'), client.get('cert'), password);
 }
